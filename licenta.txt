@@ -20,5 +20,7 @@ d)	Bootstrap
 e)	Javascript
 f)	MySQL
 
+Google Docs link: https://docs.google.com/document/d/1arBJEUyEIlhnoFyGv1EXRIDLj43ep4NwAPmoJL2-HgE/edit?usp=sharing
+
 	
 	
