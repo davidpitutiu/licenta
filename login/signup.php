@@ -5,18 +5,24 @@ error_reporting(0);
 
 session_start();
 
-
 if (isset($_POST['submit'])) {
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
 
+	if ($password == $cpassword) {
+		$sql = "SELECT * FROM users WHERE email='$email'";
+		$result = mysqli_query($connect, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (email, user_password)
-					VALUES ('$email', '$password', '$username')";
+			$sql = "INSERT INTO users (email, user_password, firstname, lastname)
+					VALUES ('$email', '$password', '$fname', '$lname')";
 			$result = mysqli_query($connect, $sql);
 			if ($result) {
 				echo "<script>alert('Wow! User Registration Completed.')</script>";
+				$fname = "";
+				$lname = "";
 				$email = "";
 				$_POST['password'] = "";
 				$_POST['cpassword'] = "";
@@ -30,7 +36,7 @@ if (isset($_POST['submit'])) {
 	} else {
 		echo "<script>alert('Password Not Matched.')</script>";
 	}
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +53,12 @@ if (isset($_POST['submit'])) {
   <div class="container">
 		<form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
+			<div class="input-group">
+				<input type="text" placeholder="First Name" name="fname" value="<?php echo $fname; ?>" required>
+			</div>
+			<div class="input-group">
+				<input type="text" placeholder="Last Name" name="lname" value="<?php echo $lname; ?>" required>
+			</div>
 			<div class="input-group">
 				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
 			</div>

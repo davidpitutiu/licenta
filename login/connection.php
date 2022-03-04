@@ -4,9 +4,10 @@
   $pass="";
   $databasename="medicalwarehouse";
   $connect=mysqli_connect($servername,$user,$pass,$databasename);
-// if($connect){
-//   echo "OK";
-// }else{
-//   echo "No ok :(";
-// }
+//Checks connection and prints a message
+  // if($connect){
+  //   echo "Connected Succsesfully! <br>";
+  //  }else{
+  //   echo "Connection Failed! <br>";
+  // }
 ?>

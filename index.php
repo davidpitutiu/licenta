@@ -14,9 +14,10 @@
 			$_SESSION['username'] = $row['username'];
 			header("Location: links/profile.php");
 		} else {
-			echo "<script>alert('Wrong Email or Password.')</script>";
+			echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
 		}
 	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,18 +32,19 @@
 <body>
   <!-- Log In -->
     <div class="container">
-      <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-        <div class="input-group">
-          <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-        </div>
-        <div class="input-group">
-          <button name="submit" class="btn">Log In</button>
-        </div>
-        <p class="login-register-text">Don't have an account? <a href="login/signup.php">Sign Up Here</a>.</p>
-      </form>
-    </div>
+		<form action="" method="POST" class="login-email">
+			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+			<div class="input-group">
+				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+			</div>
+			<div class="input-group">
+				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+			</div>
+			<div class="input-group">
+				<button name="submit" class="btn">Log In</button>
+			</div>
+			<p class="login-register-text">Don't have an account? <a href="login/signup.php">Sign Up Here</a>.</p>
+		</form>
+	</div>
 </body>
 </html>
