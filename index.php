@@ -1,3 +1,23 @@
+<?php
+  include 'login/connection.php';
+	error_reporting(0);
+  session_start();
+  if (isset($_POST['submit'])) {
+		$email = $_POST['email'];
+		$password = md5($_POST['password']);
+
+
+		$sql = "SELECT * FROM users WHERE email='$email' AND user_password='$password'";
+		$result = mysqli_query($connect, $sql);
+		if ($result->num_rows > 0) {
+			$row = mysqli_fetch_assoc($result);
+			$_SESSION['username'] = $row['username'];
+			header("Location: links/profile.php");
+		} else {
+			echo "<script>alert('Wrong Email or Password.')</script>";
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +33,10 @@
     <div class="container">
       <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
         <div class="input-group">
-          <input type="email" placeholder="Email" name="email" value="" required>
+          <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
         </div>
         <div class="input-group">
-          <input type="password" placeholder="Password" name="password" value="" required>
+          <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
         </div>
         <div class="input-group">
           <button name="submit" class="btn">Log In</button>
