@@ -11,6 +11,8 @@ if (isset($_POST['submit'])) {
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
+	$doctorCheck = $_POST['doctorCheck'];
+	$em = $_POST['email'];
 
 	if ($password == $cpassword) {
 		$sql = "SELECT * FROM users WHERE email='$email'";
@@ -20,12 +22,23 @@ if (isset($_POST['submit'])) {
 					VALUES ('$email', '$password', '$fname', '$lname')";
 			$result = mysqli_query($connect, $sql);
 			if ($result) {
-				echo "<script>alert('Wow! User Registration Completed.')</script>";
+				echo "<script>alert('Account created succsesfully.')</script>";
+				if($doctorCheck == 1)
+				{
+					$sql = "SELECT user_id FROM users WHERE email = '$email'";
+					$result = mysqli_query($connect, $sql);
+					while ($row = $result->fetch_assoc()) {
+						$user_id = $row['user_id'];
+					}
+					header('Location: doctor_data.php');
+					$_SESSION['user_id'] = $user_id;
+				}
 				$fname = "";
 				$lname = "";
 				$email = "";
 				$_POST['password'] = "";
 				$_POST['cpassword'] = "";
+				$doctorCheck = "";
 			} else {
 				echo "<script>alert('Woops! Something Wrong Went.')</script>";
 			}
@@ -63,11 +76,16 @@ if (isset($_POST['submit'])) {
 				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+				<input type="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"   required title="Password must be 8 characters including 1 uppercase letter, 1 lowercase letter and numeric characters" name="password" value="<?php echo $_POST['password']; ?>" required>
             </div>
             <div class="input-group">
 				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
 			</div>
+			<div>
+					<input type="checkbox" class="defaultCheckbox" name="doctorCheck" value="1">
+					<label for='doctor-check'>Are you a doctor?</label>
+			</div>
+			<br>
 			<div class="input-group">
 				<button name="submit" class="btn">Sign Up</button>
 			</div>
