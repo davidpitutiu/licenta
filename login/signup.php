@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
   <!-- Sign Up form  -->
   <div class="container">
 		<form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
+          <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
 			<div class="input-group">
 				<input type="text" placeholder="First Name" name="fname" value="<?php echo $fname; ?>" required>
 			</div>
