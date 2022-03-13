@@ -11,7 +11,7 @@
 		$result = mysqli_query($connect, $sql);
 		if ($result->num_rows > 0) {
 			$row = mysqli_fetch_assoc($result);
-			$_SESSION['email'] = $row['email'];
+			$_SESSION['user_id'] = $row['user_id'];
 			header("Location: links/profile.php");
 		} else {
 			echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
