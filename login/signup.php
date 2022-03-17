@@ -22,7 +22,6 @@ if (isset($_POST['submit'])) {
 					VALUES ('$email', '$password', '$fname', '$lname')";
 			$result = mysqli_query($connect, $sql);
 			if ($result) {
-				echo "<script>alert('Account created succsesfully.')</script>";
 				if($doctorCheck == 1)
 				{
 					$sql = "SELECT user_id FROM users WHERE email = '$email'";

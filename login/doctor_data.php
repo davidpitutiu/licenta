@@ -19,7 +19,6 @@
     $sql = "INSERT INTO doctors (user_id, phone_number, specialization, description, institution_id ) values('$user_id', '$phone', '$specialization', '$description', '$institution_id')";
     $result=mysqli_query($connect, $sql);
     if($result){
-      echo "<script>alert('Data stored succsesfully.')</script>";
       $phone = "";
       $description = "";
       $specialization = "";

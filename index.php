@@ -5,8 +5,6 @@
   if (isset($_POST['submit'])) {
 		$email = $_POST['email'];
 		$password = md5($_POST['password']);
-
-
 		$sql = "SELECT * FROM users WHERE email='$email' AND user_password='$password'";
 		$result = mysqli_query($connect, $sql);
 		if ($result->num_rows > 0) {
@@ -44,6 +42,9 @@
 				<button name="submit" class="btn">Log In</button>
 			</div>
 			<p class="login-register-text">Don't have an account? <a href="login/signup.php">Sign Up Here</a>.</p>
+			<p class="login-register-text">OR</p>
+			<p class="login-register-text">Add a new institution <a href="login/institution.php">HERE</a>.</p>
+			<p></p>
 		</form>
 	</div>
 </body>

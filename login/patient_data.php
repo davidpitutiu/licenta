@@ -33,7 +33,6 @@
     $result = mysqli_query($connect, $sql);
 
     if($result){
-      echo "<script>alert('Data stored succsesfully.')</script>";
       $phone= "";
       $age = "";
       $height = "";
