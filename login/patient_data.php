@@ -3,7 +3,6 @@
   include 'connection.php';
   error_reporting(0);
   $user_id = $_SESSION['user_id'];
-  // echo $user_id;
   if (isset($_POST['submit'])) {
     $phone = $_POST['phone'];
     $age = $_POST['age'];
@@ -11,6 +10,36 @@
     $weight = $_POST['weight'];
     if(!empty($_POST['doctors'])) {
       $doctors = $_POST['doctors'];
+    }
+    $sql = "SELECT user_id FROM users WHERE firstname = '$doctors'";
+    $result = mysqli_query($connect, $sql);
+    $usr_id = array();
+    while ($row = $result->fetch_assoc()) {
+      $usr_id[] = $row['user_id'];
+    }
+    $count = count($usr_id);
+    $sql = "SELECT user_id FROM doctors";
+    $result = mysqli_query($connect, $sql);
+    while ($row = $result->fetch_assoc()) {
+      $us_id = $row['user_id'];
+      foreach($usr_id as $user){
+        if($us_id == $user)
+        {
+          $id = $us_id;
+        }
+      }
+    }
+    $sql = "INSERT INTO patients (user_id, phone_number, height, weight, age, doctor_id ) values('$user_id', '$phone', '$height', '$weight', '$age', '$id')";
+    $result = mysqli_query($connect, $sql);
+
+    if($result){
+      echo "<script>alert('Data stored succsesfully.')</script>";
+      $phone= "";
+      $age = "";
+      $height = "";
+      $weight = "";
+      $doctors = "";
+      header('Location: ../links/profile.php');
     }
   }
 ?>
@@ -46,14 +75,15 @@
             <?php
                 $sql = mysqli_query($connect, "SELECT user_id FROM doctors");
                 $i = 0;
-                $user_id = array();
+                $use_id = array();
                 while ($row = $sql->fetch_assoc()){
-                  $user_id[$i] = $row['user_id'];
+                  $use_id[$i] = $row['user_id'];
                   $i++;
                 }
-                $count = count($user_id);
+                $count = count($use_id);
+                // $_SESSION['use_id']=$use_id;
                 for($i = 0; $i < $count; $i++){
-                  $sql = mysqli_query($connect, "SELECT firstname FROM users WHERE user_id = '$user_id[$i]'");
+                  $sql = mysqli_query($connect, "SELECT firstname FROM users WHERE user_id = '$use_id[$i]'");
                   while ($row = $sql->fetch_assoc()){
                     $name = $row['firstname'];
                     echo '<option name = "'.$name.'" value="'.$name.'">' . $name. '</option>';
