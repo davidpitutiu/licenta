@@ -32,6 +32,14 @@ if (isset($_POST['submit'])) {
 					}
 					header('Location: doctor_data.php');
 					$_SESSION['user_id'] = $user_id;
+				}else{
+						$sql = "SELECT user_id FROM users WHERE email = '$email'";
+					$result = mysqli_query($connect, $sql);
+					while ($row = $result->fetch_assoc()) {
+						$user_id = $row['user_id'];
+					}
+					header('Location: patient_data.php');
+					$_SESSION['user_id'] = $user_id;
 				}
 				$fname = "";
 				$lname = "";

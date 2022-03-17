@@ -24,6 +24,7 @@
       $description = "";
       $specialization = "";
       $institution = "";
+      header('Location: ../links/profile.php');
     }
   }
 ?>

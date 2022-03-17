@@ -91,6 +91,7 @@
         height INT UNSIGNED,
         weight INT UNSIGNED,
         age INT UNSIGNED,
+         phone_number VARCHAR(15),
         doctor_id INT UNSIGNED,
         FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
         user_id INT UNSIGNED,
