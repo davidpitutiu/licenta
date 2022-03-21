@@ -9,6 +9,24 @@
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
 	}
+  if (isset($_POST['submit'])) {
+    $phone = $_POST['phone'];
+    $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
+    $result = mysqli_query($connect, $sql);
+    $doctor = mysqli_query($connect, $sql);
+    while ($row = $doctor->fetch_assoc()) {
+      $doctor_id = $row['doctor_id'];
+    }
+    if($doctor_id){
+      $sql = "UPDATE doctors SET phone_number = '$phone' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $phone = "";
+    }else{
+      $sql = "UPDATE patients SET phone_number = '$phone' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $phone = "";
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +41,21 @@
 <body>
   <header>
     <div class="navbar  navbar-expand-sm">
-      <a class="nav-link" href="home.php" >Home</a>
-      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
+      <a class="nav-link" href="logout.php">Log Out</a>
       <a class="nav-link" href="settings.php">Settings</a>
-        <a class="nav-link" href="logout.php">Log Out</a>
+      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
+      <a class="nav-link" href="home.php" >Home</a>
     </div>
   </header>
+  <div class="container">
+		<form action="" method="POST" class="settings">
+			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Settings</p>
+			<div class="input-group">
+        <input type="tel" placeholder="Enter your phone number:" name="phone" value="<?php echo $phone ?>" required>
+      </div>
+      <div class="input-group">
+				<button name="submit" class="btn">UPDATE</button>
+			</div>
+		</form>
 </body>
 </html>

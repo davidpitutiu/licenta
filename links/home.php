@@ -23,10 +23,10 @@
 <body>
   <header>
     <div class="navbar  navbar-expand-sm">
-      <a class="nav-link" href="home.php" >Home</a>
-      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
-      <a class="nav-link" href="settings.php">Settings</a>
       <a class="nav-link" href="logout.php">Log Out</a>
+      <a class="nav-link" href="settings.php">Settings</a>
+      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
+      <a class="nav-link" href="home.php" >Home</a>
     </div>
   </header>
 </body>

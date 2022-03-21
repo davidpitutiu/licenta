@@ -11,9 +11,9 @@
 	}
   $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
   $doctor = mysqli_query($connect, $sql);
-  	while ($row = $doctor->fetch_assoc()) {
-			$doctor_id = $row['doctor_id'];
-		}
+  while ($row = $doctor->fetch_assoc()) {
+		$doctor_id = $row['doctor_id'];
+	}
   if($doctor_id){
     $doctor = 1;
   }else{
@@ -37,9 +37,6 @@
       <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
       <a class="nav-link" href="home.php" >Home</a>
     </div>
-    <br>
-    <br>
-    <br>
   <div class="container">
     <?php
       if($doctor == 1){
@@ -74,6 +71,7 @@
         while($row = $result->fetch_assoc()){
           $institution=$row['name'];
         }
+        print_r($institution);
       }
     ?>
   </div>
