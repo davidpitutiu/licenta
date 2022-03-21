@@ -8,7 +8,7 @@
   $result = mysqli_query($connect, $sql);
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
-	}
+  }
   if (isset($_POST['submit'])) {
     $phone = $_POST['phone'];
     $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
@@ -17,14 +17,16 @@
     while ($row = $doctor->fetch_assoc()) {
       $doctor_id = $row['doctor_id'];
     }
-    if($doctor_id){
-      $sql = "UPDATE doctors SET phone_number = '$phone' WHERE user_id = '$user_id'";
-      $result = mysqli_query($connect, $sql);
-      $phone = "";
-    }else{
-      $sql = "UPDATE patients SET phone_number = '$phone' WHERE user_id = '$user_id'";
-      $result = mysqli_query($connect, $sql);
-      $phone = "";
+    if($phone != 0){
+      if($doctor_id){
+        $sql = "UPDATE doctors SET phone_number = '$phone' WHERE user_id = '$user_id'";
+        $result = mysqli_query($connect, $sql);
+        $phone = "";
+      }else{
+        $sql = "UPDATE patients SET phone_number = '$phone' WHERE user_id = '$user_id'";
+        $result = mysqli_query($connect, $sql);
+        $phone = "";
+      }
     }
   }
 ?>
