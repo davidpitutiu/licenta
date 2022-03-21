@@ -35,9 +35,9 @@
         <div class="input-group">
           <input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" required>
         </div>
-        <div class="input-group">
+        <dizv class="input-group">
           <input type="text" placeholder="Add a description" name="description" value="<?php echo $description; ?>" required>
-        </div>
+        </dizv>
         <div class="input-group">
           <input type="text" placeholder="City" name="city" value="<?php echo $city; ?>" required>
         </div>

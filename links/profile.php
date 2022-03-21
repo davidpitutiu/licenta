@@ -3,11 +3,22 @@
 	error_reporting(0);
   session_start();
   $user_id = $_SESSION['user_id'];
+  // echo $user_id;
   $sql = "SELECT firstname FROM users where user_id = '$user_id'";
   $result = mysqli_query($connect, $sql);
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
 	}
+  $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
+  $doctor = mysqli_query($connect, $sql);
+  	while ($row = $doctor->fetch_assoc()) {
+			$doctor_id = $row['doctor_id'];
+		}
+  if($doctor_id){
+    $doctor = 1;
+  }else{
+    $doctor = 0;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +31,51 @@
   <title><?php echo $firstname?></title>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="home.php">Home</a>
-    <a class="navbar-brand" href="profile.php"><?php echo $firstname; ?></a>
-    <a class="navbar-brand" href="settings.php">Settings</a>
-    <a class="navbar-brand" href="logout.php">Log Out</a>
-  </nav>
+    <div class="navbar  navbar-expand-sm">
+      <a class="nav-link" href="logout.php">Log Out</a>
+      <a class="nav-link" href="settings.php">Settings</a>
+      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
+      <a class="nav-link" href="home.php" >Home</a>
+    </div>
+    <br>
+    <br>
+    <br>
+  <div class="container">
+    <?php
+      if($doctor == 1){
+        $sql = "SELECT user_id FROM patients WHERE doctor_id = '$doctor_id'";
+        $result=mysqli_query($connect, $sql);
+        $id = array();
+        $i = 0;
+        while($row = $result->fetch_assoc()){
+          $id[$i]=$row['user_id'];
+          $i++;
+        }
+        $i = 0;
+        $count = count($id);
+        $j = 0;
+        $patient = array();
+        for($i = 0; $i < $count; $i++){
+          $sql = "SELECT firstname FROM users WHERE user_id = '$id[$i]'";
+          $result=mysqli_query($connect, $sql);
+          while($row = $result->fetch_assoc()){
+            $patient[$j]=$row['firstname'];
+            $j++;
+          }
+        }
+        $j = 0;
+        $sql = "SELECT institution_id FROM doctors WHERE doctor_id = '$doctor_id'";
+        $result=mysqli_query($connect, $sql);
+        while($row = $result->fetch_assoc()){
+          $institution_id=$row['institution_id'];
+        }
+        $sql = "SELECT name FROM institutions WHERE institution_id = '$institution_id'";
+        $result=mysqli_query($connect, $sql);
+        while($row = $result->fetch_assoc()){
+          $institution=$row['name'];
+        }
+      }
+    ?>
+  </div>
 </body>
 </html>

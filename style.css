@@ -9,7 +9,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background: rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(0, 220, 0, 1) 60%, rgba(3, 162, 0, 1) 100%);
+  background: linear-gradient(#e66465, #9198e5);
   background-position: center;
   background-size: cover;
   display: flex;
@@ -72,13 +72,12 @@ body {
   cursor: pointer;
   transition: .3s;
 }
-
 .container .login-email .input-group .btn:hover {
   transform: translateY(5px);
   background: #00dc00;
 }
 
-.login-register-text {
+.login-register-text{
   color: #111;
   font-weight: 600;
 }
