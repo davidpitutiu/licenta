@@ -42,7 +42,7 @@
     <form action=""  method="POST">
       <p class="login-text" style="font-size: 2rem; font-weight: 800;">Doctor Data</p>
       <div class="input-group">
-        <input type="tel" placeholder="Enter your phone number:" name="phone" value="<?php echo $phone ?>" required>
+        <input type="tel" placeholder="Enter your phone number:" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>" required>
       </div>
       <div class="input-group">
         <input type="text" placeholder="Add your specialization here:" name="specialization" value="<?php echo $specialization; ?>" required>

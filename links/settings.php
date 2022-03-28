@@ -10,13 +10,31 @@
 		$firstname = $row['firstname'];
   }
   if (isset($_POST['submit'])) {
+    $fname = $_POST['fname'];
+  	$lname = $_POST['lname'];
     $phone = $_POST['phone'];
+    $email = $_POST['email'];
     $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
-    $result = mysqli_query($connect, $sql);
     $doctor = mysqli_query($connect, $sql);
     while ($row = $doctor->fetch_assoc()) {
       $doctor_id = $row['doctor_id'];
     }
+    if($fname){
+      $sql = "UPDATE users SET firstname = '$fname' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $fname= "";
+    }
+    if($lname){
+      $sql = "UPDATE users SET lastname = '$lname' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $lname = "";
+    }
+    if($email){
+      $sql = "UPDATE users SET email = '$email' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $email= "";
+    }
+    $_SESSION['doctor_id']=$doctor_id;
     if($phone != 0){
       if($doctor_id){
         $sql = "UPDATE doctors SET phone_number = '$phone' WHERE user_id = '$user_id'";
@@ -53,7 +71,35 @@
 		<form action="" method="POST" class="settings">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Settings</p>
 			<div class="input-group">
-        <input type="tel" placeholder="Enter your phone number:" name="phone" value="<?php echo $phone ?>" required>
+				<input type="text" placeholder="Last Name" name="lname" value="<?php echo $lname; ?>">
+			</div>
+      <div class="input-group">
+				<input type="text" placeholder="First Name" name="fname" value="<?php echo $fname; ?>">
+      </div>
+			<div class="input-group">
+        <input type="tel" placeholder="Enter your phone number:" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>">
+      </div>
+      <div class="input-group">
+				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>">
+			</div>
+      <br>
+      <?php
+        $doctor_id = $_SESSION['doctor_id'];
+        if($doctor_id){
+          print_r($doctor_id);
+          echo "<div class='input-group'>
+            <label for='institution'>Select a institution:</label>
+              <select name='institutions' >
+            ".$sql = mysqli_query($connect, 'SELECT name FROM institutions');
+              while ($row = $sql->fetch_assoc()){
+              $name = $row["name"];
+              echo "<option name = '".$name."' value='".$name."'>" . $name. "</option>";
+              } "
+          </div>";
+        }
+      ?>
+      <div class="input-group">
+         <input type="hidden">
       </div>
       <div class="input-group">
 				<button name="submit" class="btn">UPDATE</button>
