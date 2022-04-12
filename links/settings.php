@@ -9,15 +9,32 @@
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
   }
+  $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
+    $doctor = mysqli_query($connect, $sql);
+    while ($row = $doctor->fetch_assoc()) {
+      $doctor_id = $row['doctor_id'];
+  }
   if (isset($_POST['submit'])) {
     $fname = $_POST['fname'];
   	$lname = $_POST['lname'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
-    $doctor = mysqli_query($connect, $sql);
-    while ($row = $doctor->fetch_assoc()) {
-      $doctor_id = $row['doctor_id'];
+    $height = $_POST['height'];
+    $weight = $_POST['weight'];
+    $age = $_POST['age'];
+    if(!empty($_POST['institutions'])) {
+      $institution = $_POST['institutions'];
+    }
+    $sql = "SELECT institution_id FROM institutions WHERE name = '$institution'";
+    $result = mysqli_query($connect, $sql);
+    while ($row = $result->fetch_assoc()) {
+      $institution_id = $row['institution_id'];
+    }
+    if($institution_id){
+      $sql = "UPDATE doctors SET institution_id = '$institution_id' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $institution_id = "";
+      $institution = "";
     }
     if($fname){
       $sql = "UPDATE users SET firstname = '$fname' WHERE user_id = '$user_id'";
@@ -29,13 +46,28 @@
       $result = mysqli_query($connect, $sql);
       $lname = "";
     }
+    if($age){
+      $sql = "UPDATE patients SET age = '$age' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $age= "";
+    }
+    if($height){
+      $sql = "UPDATE patients SET height = '$height' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $height= "";
+    }
+    if($weight){
+      $sql = "UPDATE patients SET weight = '$weight' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $weight= "";
+    }
     if($email){
       $sql = "UPDATE users SET email = '$email' WHERE user_id = '$user_id'";
       $result = mysqli_query($connect, $sql);
       $email= "";
     }
     $_SESSION['doctor_id']=$doctor_id;
-    if($phone != 0){
+    if($phone){
       if($doctor_id){
         $sql = "UPDATE doctors SET phone_number = '$phone' WHERE user_id = '$user_id'";
         $result = mysqli_query($connect, $sql);
@@ -84,20 +116,34 @@
 			</div>
       <br>
       <?php
-        $doctor_id = $_SESSION['doctor_id'];
         if($doctor_id){
-          print_r($doctor_id);
+          $sql = mysqli_query($connect, 'SELECT name FROM institutions');
+            while ($row = $sql->fetch_assoc()){
+              $name[] = $row["name"];
+            }
+            $count_name = count($name);
           echo "<div class='input-group'>
             <label for='institution'>Select a institution:</label>
               <select name='institutions' >
-            ".$sql = mysqli_query($connect, 'SELECT name FROM institutions');
-              while ($row = $sql->fetch_assoc()){
-              $name = $row["name"];
-              echo "<option name = '".$name."' value='".$name."'>" . $name. "</option>";
-              } "
+              <option name = 'NULL' value = ''></option>
+              "; for($i = 0; $i<$count_name; $i++){
+                echo "<option name = ".$name[$i]." value = ".$name[$i].">".$name[$i]."</option>";}"
           </div>";
+        }else{
+          echo "<div class='input-group'>
+				          <input type='weight' placeholder='Weight' name='weight' value='$weight'>
+			          </div>
+                <div class='input-group'>
+				          <input type='height' placeholder='Height' name='height' value='$height'>
+			          </div>
+                <div class='input-group'>
+				          <input type='age' placeholder='Age' name='age' value='$age                nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn '>
+			          </div>";
         }
       ?>
+      <div class="input-group">
+         <input type="hidden">
+      </div>
       <div class="input-group">
          <input type="hidden">
       </div>
