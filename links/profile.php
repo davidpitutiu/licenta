@@ -16,9 +16,25 @@
 	}
   if($doctor_id){
     $doctor = 1;
+    $sql = "SELECT user_id FROM patients WHERE doctor_id = '$doctor_id'";
+    $patient_userid = mysqli_query($connect, $sql);
+    $patientuser_id = array();
+    while ($row = $patient_userid -> fetch_assoc()){
+      $patientuser_id[] = $row['user_id'];
+    }
+    $patient_count = count($patientuser_id);
+    $patient_name = array();
+    for($i = 0; $i < $patient_count; $i++){
+      $sql = "SELECT firstname FROM users WHERE user_id = '$patientuser_id[$i]'";
+      $patientname = mysqli_query($connect, $sql);
+      while ($row = $patientname -> fetch_assoc()){
+        $patient_name[] = $row['firstname'];
+      }
+    }
   }else{
     $doctor = 0;
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,9 +87,16 @@
         while($row = $result->fetch_assoc()){
           $institution=$row['name'];
         }
-        print_r($institution);
       }
+      echo $institution;
     ?>
+    <ul class="list-group">
+      <?php
+        for ($i = 0 ; $i<$patient_count; $i++){
+          echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php'> EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+        }
+      ?>
+    </ul>
   </div>
 </body>
 </html>
