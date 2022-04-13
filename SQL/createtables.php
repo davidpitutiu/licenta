@@ -15,9 +15,8 @@
         user_password VARCHAR(50),
         firstname VARCHAR(100),
         lastname VARCHAR(100),
-        status int(11) NOT NULL DEFAULT '0',
-        email_verification_link varchar(255) NOT NULL,
-        email_verified_at TIMESTAMP NULL,
+        verification_code TEXT,
+        verified_at DATETIME NULL
       )"
     );
     //Checks if the table has been created

@@ -1,5 +1,8 @@
 <?php
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '..\vendor\autoload.php';
 include 'connection.php';
 error_reporting(0);
 
@@ -13,7 +16,6 @@ if (isset($_POST['submit'])) {
 	$cpassword = md5($_POST['cpassword']);
 	$doctorCheck = $_POST['doctorCheck'];
 	$em = $_POST['email'];
-
 	if ($password == $cpassword) {
 		$sql = "SELECT * FROM users WHERE email='$email'";
 		$result = mysqli_query($connect, $sql);
@@ -29,7 +31,7 @@ if (isset($_POST['submit'])) {
 					while ($row = $result->fetch_assoc()) {
 						$user_id = $row['user_id'];
 					}
-					header('Location: doctor_data.php');
+					// header('Location: doctor_data.php');
 					$_SESSION['user_id'] = $user_id;
 				}else{
 						$sql = "SELECT user_id FROM users WHERE email = '$email'";
@@ -37,7 +39,7 @@ if (isset($_POST['submit'])) {
 					while ($row = $result->fetch_assoc()) {
 						$user_id = $row['user_id'];
 					}
-					header('Location: patient_data.php');
+					// header('Location: patient_data.php');
 					$_SESSION['user_id'] = $user_id;
 				}
 				$fname = "";
