@@ -1,6 +1,6 @@
 <?php
-  session_start();
   include 'connection.php';
+  session_start();
   error_reporting(0);
   $user_id = $_SESSION['user_id'];
   if (isset($_POST['submit'])) {
@@ -29,9 +29,13 @@
         }
       }
     }
-    $sql = "INSERT INTO patients (user_id, phone_number, height, weight, age, doctor_id ) values('$user_id', '$phone', '$height', '$weight', '$age', '$id')";
+    $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$id'";
     $result = mysqli_query($connect, $sql);
-
+    while ($row = $result->fetch_assoc()) {
+      $doc_id = $row['doctor_id'];
+    }
+    $sql = "INSERT INTO patients (height, weight, age, phone_number, doctor_id, user_id) VALUES ('$height', '$weight', '$age', '$phone', '$doc_id', '$user_id')";
+    $result = mysqli_query($connect, $sql);
     if($result){
       $phone= "";
       $age = "";
@@ -82,10 +86,11 @@
                 $count = count($use_id);
                 // $_SESSION['use_id']=$use_id;
                 for($i = 0; $i < $count; $i++){
-                  $sql = mysqli_query($connect, "SELECT firstname FROM users WHERE user_id = '$use_id[$i]'");
+                  $sql = mysqli_query($connect, "SELECT firstname, lastname FROM users WHERE user_id = '$use_id[$i]'");
                   while ($row = $sql->fetch_assoc()){
                     $name = $row['firstname'];
-                    echo '<option name = "'.$name.'" value="'.$name.'">' . $name. '</option>';
+                    $lastname = $row['lastname'];
+                    echo '<option name = "'.$name.'" value="'.$name.'">' . $name.' '. $lastname. '</option>';
                   }
                 }
             ?>

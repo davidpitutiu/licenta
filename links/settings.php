@@ -22,6 +22,32 @@
     $height = $_POST['height'];
     $weight = $_POST['weight'];
     $age = $_POST['age'];
+    if(!empty($_POST['doctors'])) {
+      $doctors = $_POST['doctors'];
+    }
+    $sql = "SELECT user_id FROM users WHERE firstname = '$doctors'";
+    $result = mysqli_query($connect, $sql);
+    $usr_id = array();
+    while ($row = $result->fetch_assoc()) {
+      $usr_id[] = $row['user_id'];
+    }
+    $count = count($usr_id);
+    $sql = "SELECT user_id FROM doctors";
+    $result = mysqli_query($connect, $sql);
+    while ($row = $result->fetch_assoc()) {
+      $us_id = $row['user_id'];
+      foreach($usr_id as $user){
+        if($us_id == $user)
+        {
+          $id = $us_id;
+        }
+      }
+    }
+    $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$id'";
+    $result = mysqli_query($connect, $sql);
+    while ($row = $result->fetch_assoc()) {
+      $doc_id = $row['doctor_id'];
+    }
     if(!empty($_POST['institutions'])) {
       $institution = $_POST['institutions'];
     }
@@ -29,6 +55,11 @@
     $result = mysqli_query($connect, $sql);
     while ($row = $result->fetch_assoc()) {
       $institution_id = $row['institution_id'];
+    }
+    if($doc_id){
+      $sql = "UPDATE patients SET doctor_id = '$doc_id' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $doctors= "";
     }
     if($institution_id){
       $sql = "UPDATE doctors SET institution_id = '$institution_id' WHERE user_id = '$user_id'";
@@ -123,7 +154,7 @@
             }
             $count_name = count($name);
           echo "<div class='input-group'>
-            <label for='institution'>Select a institution:</label>
+            <label for='institution'>Change the institution:</label>
               <select name='institutions' >
               <option name = 'NULL' value = ''></option>
               "; for($i = 0; $i<$count_name; $i++){
@@ -137,8 +168,29 @@
 				          <input type='height' placeholder='Height' name='height' value='$height'>
 			          </div>
                 <div class='input-group'>
-				          <input type='age' placeholder='Age' name='age' value='$age                nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn '>
+				          <input type='age' placeholder='Age' name='age' value='$age'>
 			          </div>";
+          echo "<div class='input-group'>
+                <label for='doctors'>Select a doctor:</label>
+                <select name='doctors' >
+                <option name = 'NULL' value = ''></option>";
+          $sql = mysqli_query($connect, "SELECT user_id FROM doctors");
+          $i = 0;
+          $use_id = array();
+          while ($row = $sql->fetch_assoc()){
+            $use_id[$i] = $row['user_id'];
+            $i++;
+          }
+          $count = count($use_id);
+          for($i = 0; $i < $count; $i++){
+            $sql = mysqli_query($connect, "SELECT firstname, lastname FROM users WHERE user_id = '$use_id[$i]'");
+            while ($row = $sql->fetch_assoc()){
+              $name = $row['firstname'];
+              $lastname = $row['lastname'];
+              echo '<option name = "'.$name.'" value="'.$name.'">' . $name.' '. $lastname. '</option>';
+            }
+          }
+          echo "</>";
         }
       ?>
       <div class="input-group">
