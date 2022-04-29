@@ -1,38 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 body {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: rgba(255, 255, 255, 1);
   background: radial-gradient( #9198e5, #e66465);
   background-position: center;
   background-size: cover;
+  margin-top: 0;
 }
-.navbar{
-    background-color: white;
-    width: 100%;
-    height:30px;
-    align-items: right;
+.navbar {
+  background-color: rgb(58, 58, 58);
+  width: 100%;
+  height: 30px;
+  align-items: right;
+  margin-bottom: 0;
 }
-.navbar a:link{
+
+.navbar a:link {
   font-size: 30px;
   text-decoration: none;
   height: 100%;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color:rgb(8, 14, 14);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: rgb(8, 14, 14);
 }
-.navbar a:visited{
-    color:rgb(8, 14, 14);
-;
+
+.navbar a:visited {
+  color: rgb(8, 14, 14);
+  ;
 }
-.navbar a:active{
-    color: #00dc00;
+
+.navbar a:active {
+  color: #00dc00;
 }
-.navbar a:hover{
-    color: #00dc00;
+
+.navbar a:hover {
+  color: #00dc00;
 }
-.navbar a{
-  float:right;
+
+.navbar a {
+  float: right;
   margin-right: 10px;
+}
+.container-patients{
+  position: relative;
+  background-color: white;
+  width : 70%;
+  height: 100%;
 }
 .container {
   width: 400px;

@@ -1,3 +1,10 @@
+<?php
+  include '../login/connection.php';
+	error_reporting(0);
+  session_start();
+  $puser_id = $_GET['puser_id'];
+  echo $puser_id;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

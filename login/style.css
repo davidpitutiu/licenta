@@ -4,7 +4,6 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
 body {
   width: 100%;
   min-height: 100vh;
@@ -16,7 +15,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .container {
   width: 400px;
   min-height: 400px;

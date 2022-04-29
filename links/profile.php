@@ -24,13 +24,20 @@
     }
     $patient_count = count($patientuser_id);
     $patient_name = array();
+    $pfirstname = array();
+    $j=0;
     for($i = 0; $i < $patient_count; $i++){
-      $sql = "SELECT firstname FROM users WHERE user_id = '$patientuser_id[$i]'";
+      $sql = "SELECT firstname, lastname FROM users WHERE user_id = '$patientuser_id[$i]'";
       $patientname = mysqli_query($connect, $sql);
       while ($row = $patientname -> fetch_assoc()){
-        $patient_name[] = $row['firstname'];
+        $patient_name[$j] = $row['lastname']. ' ';
+        $patient_name[$j] .= $row['firstname'];
+        $pfirstname[$j] = $row['firstname'];
+        $plastname[$j] = $row['lastname'];
+        $j++;
       }
     }
+    $j=0;
   }else{
     $doctor = 0;
   }
@@ -53,30 +60,10 @@
       <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
       <a class="nav-link" href="home.php" >Home</a>
     </div>
-  <div class="container">
+  <div class="container-patients">
     <?php
       if($doctor == 1){
-        $sql = "SELECT user_id FROM patients WHERE doctor_id = '$doctor_id'";
-        $result=mysqli_query($connect, $sql);
-        $id = array();
-        $i = 0;
-        while($row = $result->fetch_assoc()){
-          $id[$i]=$row['user_id'];
-          $i++;
-        }
-        $i = 0;
-        $count = count($id);
-        $j = 0;
-        $patient = array();
-        for($i = 0; $i < $count; $i++){
-          $sql = "SELECT firstname FROM users WHERE user_id = '$id[$i]'";
-          $result=mysqli_query($connect, $sql);
-          while($row = $result->fetch_assoc()){
-            $patient[$j]=$row['firstname'];
-            $j++;
-          }
-        }
-        $j = 0;
+        echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Patients</p>';
         $sql = "SELECT institution_id FROM doctors WHERE doctor_id = '$doctor_id'";
         $result=mysqli_query($connect, $sql);
         while($row = $result->fetch_assoc()){
@@ -88,12 +75,16 @@
           $institution=$row['name'];
         }
       }
-      echo $institution;
     ?>
     <ul class="list-group">
       <?php
         for ($i = 0 ; $i<$patient_count; $i++){
-          echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php'> EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+          $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]'";
+          $result = mysqli_query($connect, $sql);
+          while ($row = $result->fetch_assoc()){
+            $puser_id = $row['user_id'];
+          }
+          echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
         }
       ?>
     </ul>
