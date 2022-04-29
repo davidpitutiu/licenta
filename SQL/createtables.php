@@ -15,8 +15,8 @@
         user_password VARCHAR(50),
         firstname VARCHAR(100),
         lastname VARCHAR(100),
-        verification_code TEXT,
-        verified_at DATETIME NULL
+        token VARCHAR(255),
+        active INT( 1 ) NOT NULL DEFAULT '0'
       )"
     );
     //Checks if the table has been created

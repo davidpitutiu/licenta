@@ -10,47 +10,48 @@ if (isset($_POST['submit'])) {
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
 	$doctorCheck = $_POST['doctorCheck'];
+	$token = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+	$_SESSION['email'] = $email;
+	$_SESSION['doctorCheck'] = $doctorCheck;
 	if ($password == $cpassword) {
 		$sql = "SELECT * FROM users WHERE email='$email'";
 		$result = mysqli_query($connect, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (email, user_password, firstname, lastname)
-					VALUES ('$email', '$password', '$fname', '$lname')";
+			$sql = "INSERT INTO users (email, user_password, firstname, lastname, token)
+					VALUES ('$email', '$password', '$fname', '$lname', '$token')";
+			$headers = "From: davidpitutiu <davidpitutiu@yahoo.com> \r\n";
+			$to = $email;
+			$subject = "Please verify your account!";
+			$message = 'This is your verification code: '.$token.' ';
+			mail($to, $subject, $message, $headers);
 			$result = mysqli_query($connect, $sql);
-			if ($result) {
-				if($doctorCheck == 1)
-				{
-					$sql = "SELECT user_id FROM users WHERE email = '$email'";
-					$result = mysqli_query($connect, $sql);
-					while ($row = $result->fetch_assoc()) {
-						$user_id = $row['user_id'];
-					}
-					header('Location: doctor_data.php');
-					$_SESSION['user_id'] = $user_id;
-				}else{
-						$sql = "SELECT user_id FROM users WHERE email = '$email'";
-					$result = mysqli_query($connect, $sql);
-					while ($row = $result->fetch_assoc()) {
-						$user_id = $row['user_id'];
-					}
-					header('Location: patient_data.php');
-					$_SESSION['user_id'] = $user_id;
-				}
-				$fname = "";
-				$lname = "";
-				$email = "";
-				$_POST['password'] = "";
-				$_POST['cpassword'] = "";
-				$doctorCheck = "";
-			} else {
-				echo "<script>alert('Woops! Something Wrong Went.')</script>";
+			if($doctorCheck){
+				$sql = "SELECT user_id FROM users WHERE email = '$email'";
+				$result = mysqli_query($connect, $sql);
+				while ($row = $result->fetch_assoc()) {
+					$user_id = $row['user_id'];
+  			}
+				$sql = "INSERT INTO doctors (user_id) VALUE ('$user_id')";
+				$result = mysqli_query($connect, $sql);
+			}else{
+				$sql = "SELECT user_id FROM users WHERE email = '$email'";
+				$result = mysqli_query($connect, $sql);
+				while ($row = $result->fetch_assoc()) {
+					$user_id = $row['user_id'];
+  			}
+				$sql = "INSERT INTO patients (user_id) VALUE ('$user_id')";
+				$result = mysqli_query($connect, $sql);
 			}
+			$fname = "";
+    	$lname = "";
+    	$email = "";
+    	$_POST['password'] = "";
+    	$_POST['cpassword'] = "";
+    	$doctorCheck = "";
+			header('Location: email_verification.php');
 		} else {
 			echo "<script>alert('Woops! Email Already Exists.')</script>";
 		}
-
-	} else {
-		echo "<script>alert('Password Not Matched.')</script>";
 	}
 }
 ?>

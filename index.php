@@ -7,10 +7,24 @@
 		$password = md5($_POST['password']);
 		$sql = "SELECT * FROM users WHERE email='$email' AND user_password='$password'";
 		$result = mysqli_query($connect, $sql);
-		if ($result->num_rows > 0) {
-			$row = mysqli_fetch_assoc($result);
-			$_SESSION['user_id'] = $row['user_id'];
-			header("Location: links/profile.php");
+		if ($result->num_rows > 0){
+			$sql = "SELECT active FROM users WHERE email = '$email'";
+			$result = mysqli_query($connect, $sql);
+			 while ($row = $result->fetch_assoc()) {
+				$active = $row['active'];
+  		}
+			if(!$active){
+				header("Location: login/email_verification.php");
+			}else{
+				$sql = "SELECT user_id FROM users WHERE email = '$email'";
+				$result = mysqli_query($connect, $sql);
+				while ($row = $result->fetch_assoc()) {
+					$user_id = $row['user_id'];
+				}
+				$_SESSION['user_id'] = $user_id;
+
+				header("Location: links/profile.php");
+			}
 		} else {
 			echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
 		}
