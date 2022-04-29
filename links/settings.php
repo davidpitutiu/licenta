@@ -18,10 +18,12 @@
     $fname = $_POST['fname'];
   	$lname = $_POST['lname'];
     $phone = $_POST['phone'];
-    $email = $_POST['email'];
+    // $email = $_POST['email'];
     $height = $_POST['height'];
     $weight = $_POST['weight'];
     $age = $_POST['age'];
+    $description = $_POST['description'];
+    $specialization = $_POST['specialization'];
     if(!empty($_POST['doctors'])) {
       $doctors = $_POST['doctors'];
     }
@@ -51,6 +53,7 @@
     if(!empty($_POST['institutions'])) {
       $institution = $_POST['institutions'];
     }
+    echo $institution;
     $sql = "SELECT institution_id FROM institutions WHERE name = '$institution'";
     $result = mysqli_query($connect, $sql);
     while ($row = $result->fetch_assoc()) {
@@ -63,6 +66,18 @@
     }
     if($institution_id){
       $sql = "UPDATE doctors SET institution_id = '$institution_id' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $institution_id = "";
+      $institution = "";
+    }
+    if($description){
+      $sql = "UPDATE doctors SET description = '$description' WHERE user_id = '$user_id'";
+      $result = mysqli_query($connect, $sql);
+      $institution_id = "";
+      $institution = "";
+    }
+    if($specialization){
+      $sql = "UPDATE doctors SET specialization = '$specialization' WHERE user_id = '$user_id'";
       $result = mysqli_query($connect, $sql);
       $institution_id = "";
       $institution = "";
@@ -92,11 +107,11 @@
       $result = mysqli_query($connect, $sql);
       $weight= "";
     }
-    if($email){
-      $sql = "UPDATE users SET email = '$email' WHERE user_id = '$user_id'";
-      $result = mysqli_query($connect, $sql);
-      $email= "";
-    }
+    // if($email){
+    //   $sql = "UPDATE users SET email = '$email' WHERE user_id = '$user_id'";
+    //   $result = mysqli_query($connect, $sql);
+    //   $email= "";
+    // }
     $_SESSION['doctor_id']=$doctor_id;
     if($phone){
       if($doctor_id){
@@ -142,23 +157,27 @@
 			<div class="input-group">
         <input type="tel" placeholder="Enter your phone number:" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>">
       </div>
-      <div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>">
-			</div>
+      <!-- <div class="input-group">
+				<input type="email" placeholder="Email" name="email" value="<?php //echo $email; ?>">
+			</div> -->
       <br>
       <?php
         if($doctor_id){
+          // echo "<div class='input-group'>
+          //         <input type='text' placeholder='Add your specialization here:' name='specialization' value= ".$specialization.">
+          //       </div>
+          //       <div class='input-group'>
+          //         <input type='text' placeholder='Add your description here:' name='description' value=".$description.">
+          //       </div>";
           $sql = mysqli_query($connect, 'SELECT name FROM institutions');
-            while ($row = $sql->fetch_assoc()){
-              $name[] = $row["name"];
-            }
-            $count_name = count($name);
           echo "<div class='input-group'>
             <label for='institution'>Change the institution:</label>
-              <select name='institutions' >
+              <select name='institutions'>
               <option name = 'NULL' value = ''></option>
-              "; for($i = 0; $i<$count_name; $i++){
-                echo "<option name = ".$name[$i]." value = ".$name[$i].">".$name[$i]."</option>";}"
+              "; while ($row = $sql->fetch_assoc()){
+                $name = $row['name'];
+                echo '<option name = "'.$name.'" value="'.$name.'">' . $name. '</option>';
+              }"
           </div>";
         }else{
           echo "<div class='input-group'>
