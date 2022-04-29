@@ -25,7 +25,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
   <title>Add an institution</title>
 </head>
 <body>
@@ -47,7 +47,7 @@
         <div class="input-group">
           <button name="submit" class="btn">Submit</button>
         </div>
-        <p class="login-register-text">You can log in <a href="../index.php">HERE</a>.</p>
+        <p class="login-register-text">You can log in <a href="../index.php" style = "color:#00dc00;">HERE</a>.</p>
       </form>
     </div>
 </body>

@@ -55,10 +55,10 @@
 			<div class="input-group">
 				<button name="submit" class="btn">Log In</button>
 			</div>
-			<p class="login-register-text"><a href="login/forgot_password.php">Forgot password?</a></p>
-			<p class="login-register-text">Don't have an account? <a href="login/signup.php">Sign Up Here</a>.</p>
-			<p class="login-register-text">OR</p>
-			<p class="login-register-text">Add a new institution <a href="login/institution.php">HERE</a>.</p>
+			<p class="login-register-text" style = "text-align:center;"><a href="login/forgot_password.php">Forgot password?</a></p>
+			<p class="login-register-text" style = "text-align:center;">Don't have an account? <a href="login/signup.php">Sign Up Here</a>.</p>
+			<p class="login-register-text" style = "text-align:center;">OR</p>
+			<p class="login-register-text" style = "text-align:center;">Add a new institution <a href="login/institution.php">HERE</a>.</p>
 			<p></p>
 		</form>
 	</div>
