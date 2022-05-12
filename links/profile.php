@@ -89,5 +89,8 @@
       ?>
     </ul>
   </div>
+  <div class="container-profileinfo">
+
+  </div>
 </body>
 </html>

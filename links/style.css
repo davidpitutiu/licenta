@@ -42,9 +42,15 @@ body {
   margin-right: 10px;
 }
 .container-patients{
-  position: relative;
+  /* position: relative; */
   background-color: white;
-  width : 70%;
+  width : 69%;
+  height: 100%;
+}
+.container-profileinfo{
+  float: right;
+  background-color: wheat;
+  width: 29%;
   height: 100%;
 }
 .container {
