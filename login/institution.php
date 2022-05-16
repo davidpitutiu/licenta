@@ -11,6 +11,7 @@
     $result = mysqli_query($connect, $sql);
     if($result){
       echo "<script>alert('Institution added succsesfully!');</script>";
+      header('Location: institution.php');
       $name = "";
       $description = "";
       $city = "";

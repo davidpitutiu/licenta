@@ -53,7 +53,7 @@
     if(!empty($_POST['institutions'])) {
       $institution = $_POST['institutions'];
     }
-    echo $institution;
+    // echo $institution;
     $sql = "SELECT institution_id FROM institutions WHERE name = '$institution'";
     $result = mysqli_query($connect, $sql);
     while ($row = $result->fetch_assoc()) {

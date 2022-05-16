@@ -35,7 +35,7 @@
     <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
     <a class="nav-link" href="home.php" >Home</a>
   </div>
-  <div class="container">
+  <div class="div-diagnostics">
     <h1 style = "color: #00dc00"><?php echo $username; ?></h1>
   </div>
 </body>

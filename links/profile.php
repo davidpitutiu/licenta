@@ -25,15 +25,19 @@
     $patient_count = count($patientuser_id);
     $patient_name = array();
     $pfirstname = array();
+    $plastname = array();
+    $ssn = array();
     $j=0;
     for($i = 0; $i < $patient_count; $i++){
-      $sql = "SELECT firstname, lastname FROM users WHERE user_id = '$patientuser_id[$i]'";
+      $sql = "SELECT firstname, lastname,ssn FROM users WHERE user_id = '$patientuser_id[$i]'";
       $patientname = mysqli_query($connect, $sql);
       while ($row = $patientname -> fetch_assoc()){
         $patient_name[$j] = $row['lastname']. ' ';
-        $patient_name[$j] .= $row['firstname'];
+        $patient_name[$j] .= $row['firstname']. ' ';
+        $patient_name[$j] .= $row['ssn'];
         $pfirstname[$j] = $row['firstname'];
         $plastname[$j] = $row['lastname'];
+        $ssn[$j] = $row['ssn'];
         $j++;
       }
     }
@@ -60,7 +64,7 @@
       <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
       <a class="nav-link" href="home.php" >Home</a>
     </div>
-      <div class="container-patients">
+      <div class="container-data">
         <?php
           if($doctor == 1){
             echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Patients</p>';
@@ -74,12 +78,17 @@
             while($row = $result->fetch_assoc()){
               $institution=$row['name'];
             }
+          }else{
+            echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Diagnostics</p>';
+            for($i=0;$i< 100; $i++){
+              echo 'OK <br>';
+            }
           }
         ?>
         <ul class="list-group">
           <?php
             for ($i = 0 ; $i<$patient_count; $i++){
-              $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]'";
+              $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]' AND ssn = '$ssn[$i]'";
               $result = mysqli_query($connect, $sql);
               while ($row = $result->fetch_assoc()){
                 $puser_id = $row['user_id'];
