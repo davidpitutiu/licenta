@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
 	$doctorCheck = $_POST['doctorCheck'];
-	$cnp = $_POST['cnp'];
+	$ssn = $_POST['ssn'];
 	$token = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
 	$_SESSION['email'] = $email;
 	$_SESSION['doctorCheck'] = $doctorCheck;
@@ -18,8 +18,8 @@ if (isset($_POST['submit'])) {
 		$sql = "SELECT * FROM users WHERE email='$email'";
 		$result = mysqli_query($connect, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (email, user_password, firstname, lastname, cnp, token)
-					VALUES ('$email', '$password', '$fname', '$lname', '$cnp', '$token')";
+			$sql = "INSERT INTO users (email, user_password, firstname, lastname, ssn, token)
+					VALUES ('$email', '$password', '$fname', '$lname', '$ssn', '$token')";
 			$headers = "From: davidpitutiu <davidpitutiu@yahoo.com> \r\n";
 			$to = $email;
 			$subject = "Please verify your account!";
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
 				<input type="text" placeholder="Last Name" name="lname" value="<?php echo $lname; ?>" required>
 			</div>
 			<div class="input-group">
-				<input type="text" placeholder="Cod Numeric Personal" name="cnp" value="<?php echo $cnp; ?>" required>
+				<input type="text" placeholder="Social Security Number" name="ssn" value="<?php echo $ssn; ?>" required>
 			</div>
 			<div class="input-group">
 				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>

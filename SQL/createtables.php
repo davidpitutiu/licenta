@@ -17,7 +17,7 @@
         lastname VARCHAR(100),
         token VARCHAR(255),
         active INT( 1 ) NOT NULL DEFAULT '0',
-        cnp VARCHAR( 13 ) 
+        ssn VARCHAR( 13 )
       )"
     );
     //Checks if the table has been created

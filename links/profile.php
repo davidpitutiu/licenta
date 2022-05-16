@@ -60,37 +60,37 @@
       <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
       <a class="nav-link" href="home.php" >Home</a>
     </div>
-  <div class="container-patients">
-    <?php
-      if($doctor == 1){
-        echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Patients</p>';
-        $sql = "SELECT institution_id FROM doctors WHERE doctor_id = '$doctor_id'";
-        $result=mysqli_query($connect, $sql);
-        while($row = $result->fetch_assoc()){
-          $institution_id=$row['institution_id'];
-        }
-        $sql = "SELECT name FROM institutions WHERE institution_id = '$institution_id'";
-        $result=mysqli_query($connect, $sql);
-        while($row = $result->fetch_assoc()){
-          $institution=$row['name'];
-        }
-      }
-    ?>
-    <ul class="list-group">
-      <?php
-        for ($i = 0 ; $i<$patient_count; $i++){
-          $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]'";
-          $result = mysqli_query($connect, $sql);
-          while ($row = $result->fetch_assoc()){
-            $puser_id = $row['user_id'];
+      <div class="container-patients">
+        <?php
+          if($doctor == 1){
+            echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Patients</p>';
+            $sql = "SELECT institution_id FROM doctors WHERE doctor_id = '$doctor_id'";
+            $result=mysqli_query($connect, $sql);
+            while($row = $result->fetch_assoc()){
+              $institution_id=$row['institution_id'];
+            }
+            $sql = "SELECT name FROM institutions WHERE institution_id = '$institution_id'";
+            $result=mysqli_query($connect, $sql);
+            while($row = $result->fetch_assoc()){
+              $institution=$row['name'];
+            }
           }
-          echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
-        }
-      ?>
-    </ul>
-  </div>
-  <div class="container-profileinfo">
+        ?>
+        <ul class="list-group">
+          <?php
+            for ($i = 0 ; $i<$patient_count; $i++){
+              $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]'";
+              $result = mysqli_query($connect, $sql);
+              while ($row = $result->fetch_assoc()){
+                $puser_id = $row['user_id'];
+              }
+              echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+            }
+          ?>
+        </ul>
+      </div>
+      <div class="container-profileinfo">
 
-  </div>
+      </div>
 </body>
 </html>
