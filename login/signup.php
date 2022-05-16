@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 		if (!$result->num_rows > 0) {
 			$sql = "INSERT INTO users (email, user_password, firstname, lastname, ssn, token)
 					VALUES ('$email', '$password', '$fname', '$lname', '$ssn', '$token')";
-			$headers = "From: davidpitutiu <davidpitutiu@yahoo.com> \r\n";
+			$headers = "From: lucrarelicenta <lucrarelicenta.dip2022@gmail.com> \r\n";
 			$to = $email;
 			$subject = "Please verify your account!";
 			$message = 'This is your verification code: '.$token.' ';

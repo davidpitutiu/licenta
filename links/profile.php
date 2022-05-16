@@ -80,9 +80,6 @@
             }
           }else{
             echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Diagnostics</p>';
-            for($i=0;$i< 100; $i++){
-              echo 'OK <br>';
-            }
           }
         ?>
         <ul class="list-group">

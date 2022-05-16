@@ -30,7 +30,7 @@ if (isset($_POST['resend'])){
   $token = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
   $sql = "UPDATE users SET token = '$token' WHERE email = '$email'";
   $result = mysqli_query($connect, $sql);
-  $headers = "From: davidpitutiu <davidpitutiu@yahoo.com> \r\n";
+  $headers = "From: lucrarelicenta <lucrarelicenta.dip2022@gmail.com> \r\n";
   $to = $email;
   $subject = "Please verify your account!";
   $message = 'This is your new verification code: '.$token.' ';
