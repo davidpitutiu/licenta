@@ -37,6 +37,18 @@
   </div>
   <div class="div-diagnostics">
     <h1 style = "color: #00dc00"><?php echo $username; ?></h1>
+    <form action="" method="POST" class="login-email">
+			<div class="input-group">
+				<input type="text" placeholder="Diagnostic Name" name="dname" value="<?php echo $dname; ?>" required>
+			</div>
+			<div class="input-group">
+				<input type="text" placeholder="Diagnostic Description" name="ddescription" value="<?php echo $ddescription; ?>" required>
+			</div>
+
+			<div class="input-group">
+				<button name="submit" class="btn">Submit</button>
+      </div>
+		</form>
   </div>
 </body>
 </html>

@@ -125,14 +125,15 @@ body {
   border-color: #00dc00;
 }
 .div-diagnostics {
-  width: 400px;
-  min-height: 400px;
-  background: #FFF;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #00dc00;
-  padding: 40px 30px;
-  margin-top: 3cm;
+  position: fixed;
   text-align: center;
+  top: 60px;
+  width: 80%;
+  left: 10%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  border-radius: 10px;
+  background-color: white;
 }
 .container .input-group select {
   width: 100%;
@@ -165,4 +166,89 @@ body {
   transform: translateY(5px);
   background: #00dc00;
 }
+.div-diagnostics .input-group select {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: transparent;
+  outline: none;
+  transition: .3s;
+}
 
+.div-diagnostics .input-group .btn {
+  display: block;
+  position: absolute;
+  margin-top: 20px;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 25%;
+  padding: 15px 20px;
+  text-align: center;
+  border: none;
+  background: #00dc00;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  color: #FFF;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.div-diagnostics .input-group .btn:hover {
+  transform: translateY(5px);
+  background: #00dc00;
+}
+.div-diagnostics .input-group {
+  color: #111;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.div-diagnostics .input-group input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: transparent;
+  outline: none;
+  transition: .3s;
+}
+
+.div-diagnostics .input-group input:focus, .input-group input:valid {
+  border-color: #00dc00;
+}
+
+.div-diagnostics .input-group {
+  color: #111;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.div-diagnostics .input-group input {
+  width: 70%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: transparent;
+  outline: none;
+  transition: .3s;
+}
+
+.div-diagnostics .input-group input:focus,
+.input-group input:valid {
+  border-color: #00dc00;
+}
