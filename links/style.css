@@ -252,22 +252,40 @@ body {
 .input-group input:valid {
   border-color: #00dc00;
 }
-.container-profileinfo .pfp img{
+.container-profileinfo .first-profile .pfp img{
   height: 100px;
   width: 100px;
   border-radius: 50%;
   margin: 5px;
 }
-.container-profileinfo .name{
+.container-profileinfo .first-profile .name{
   width: 100%;
-  height: 30%;
-  margin-left: 10px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
   text-align: center;
-  background-color: gray;
-  /* line-height: normal; */
+  flex-direction: column;
+  margin-left: 10px;
 }
-.container-profileinfo {
+.container-profileinfo .first-profile{
+  height: 30%;
+  width: 100%;
   display: flex;
   justify-content: left;
   overflow-wrap: anywhere;
+}
+.container-profileinfo .second-profile{
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+.container-profileinfo .second-profile .user-data{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  flex-direction: column;
 }

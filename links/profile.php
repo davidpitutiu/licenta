@@ -85,23 +85,87 @@
         ?>
         <ul class="list-group">
           <?php
+            $num = 0;
             for ($i = 0 ; $i<$patient_count; $i++){
               $sql = "SELECT user_id FROM users WHERE firstname = '$pfirstname[$i]' AND lastname = '$plastname[$i]' AND ssn = '$ssn[$i]'";
               $result = mysqli_query($connect, $sql);
               while ($row = $result->fetch_assoc()){
                 $puser_id = $row['user_id'];
               }
-              echo "<li class='list-group-item'>".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+              $num = $i+1;
+              echo "<li class='list-group-item'>".$num.". ".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
             }
+            $num = 0;
           ?>
         </ul>
       </div>
       <div class="container-profileinfo">
-        <div class="pfp">
-          <img src="../photos/profilepicture_default.png" alt="unplash">
+        <div class="first-profile">
+          <div class="pfp">
+            <img src="../photos/profilepicture_default.png" alt="unplash">
+          </div>
+          <div class="name">
+            <span style = "font-size: 20px; color: #00dc00;"><?php echo $firstname.' '.$lastname; ?></span>
+          </div>
         </div>
-        <div class="name">
-          <p style = "font-size: 20px; color: #00dc00;"><?php echo $firstname.' '.$lastname; ?></p>
+        <div class="second-profile">
+        <div class="user-data">
+          <?php
+          $sql = "SELECT email FROM users WHERE user_id = '$user_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $email = $row['email'];
+            }
+            echo "<p style='font-size: 20px; color: #00dc00;'>$email</p>";
+          if($doctor == 1) {
+            $sql = "SELECT specialization, phone_number FROM doctors WHERE user_id = '$user_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $doc_specialization = $row['specialization'];
+              $doc_phone_number = $row['phone_number'];;
+            }
+            $sql = "SELECT institution_id FROM doctors WHERE user_id = '$user_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $doctor_institution_id = $row['institution_id'];
+            }
+            $sql = "SELECT name FROM institutions WHERE institution_id = '$doctor_institution_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $institution_name = $row['name'];
+            }
+            echo "<p style='font-size: 20px; color: #00dc00;'>$doc_specialization</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$doc_phone_number</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$institution_name</p>";
+          }else{
+            $sql = "SELECT age, height, weight, phone_number, doctor_id FROM patients WHERE user_id = '$user_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $patient_age = $row['age'];
+              $patient_height = $row['height'];
+              $patient_weight = $row['weight'];
+              $patient_phone_number = $row['phone_number'];
+              $patient_doctor_id = $row['doctor_id'];
+            }
+            $sql = "SELECT user_id FROM doctors WHERE doctor_id = '$patient_doctor_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $doctor_user_id = $row['user_id'];
+            }
+            $sql = "SELECT firstname, lastname FROM users WHERE user_id = '$doctor_user_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $doctor_name = $row['firstname'].' ';
+              $doctor_name .= $row['lastname'];
+            }
+            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_height</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_weight</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_age</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_phone_number</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$doctor_name</p>";
+          }
+          ?>
+          </div>
         </div>
       </div>
 </body>
