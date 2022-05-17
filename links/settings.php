@@ -73,14 +73,12 @@
     if($description){
       $sql = "UPDATE doctors SET description = '$description' WHERE user_id = '$user_id'";
       $result = mysqli_query($connect, $sql);
-      $institution_id = "";
-      $institution = "";
+      $description = "";
     }
     if($specialization){
       $sql = "UPDATE doctors SET specialization = '$specialization' WHERE user_id = '$user_id'";
       $result = mysqli_query($connect, $sql);
-      $institution_id = "";
-      $institution = "";
+      $specialization = "";
     }
     if($fname){
       $sql = "UPDATE users SET firstname = '$fname' WHERE user_id = '$user_id'";
@@ -163,12 +161,12 @@
       <br>
       <?php
         if($doctor_id){
-          // echo "<div class='input-group'>
-          //         <input type='text' placeholder='Add your specialization here:' name='specialization' value= ".$specialization.">
-          //       </div>
-          //       <div class='input-group'>
-          //         <input type='text' placeholder='Add your description here:' name='description' value=".$description.">
-          //       </div>";
+          echo "<div class='input-group'>
+                  <input type='text' placeholder='Add your specialization here:' name='specialization' value= ".$specialization.">
+                </div>
+                <div class='input-group'>
+                  <input type='text' placeholder='Add your description here:' name='description' value=".$description.">
+                </div>";
           $sql = mysqli_query($connect, 'SELECT name FROM institutions');
           echo "<div class='input-group'>
             <label for='institution'>Change the institution:</label>
