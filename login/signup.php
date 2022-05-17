@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
 				<input type="text" placeholder="Last Name" name="lname" value="<?php echo $lname; ?>" required>
 			</div>
 			<div class="input-group">
-				<input type="text" placeholder="Social Security Number" name="ssn" value="<?php echo $ssn; ?>" required>
+				<input type="text" placeholder="Social Security Number" name="ssn" pattern="[0-9]{13}" value="<?php echo $ssn; ?>" required>
 			</div>
 			<div class="input-group">
 				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>

@@ -58,7 +58,7 @@ body {
   margin-top: 10px;
   background-color: white;
   width: 30%;
-  height: 100%;
+  height: 50%;
   overflow-y: scroll;
 }
 /* width */
@@ -251,4 +251,23 @@ body {
 .div-diagnostics .input-group input:focus,
 .input-group input:valid {
   border-color: #00dc00;
+}
+.container-profileinfo .pfp img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 5px;
+}
+.container-profileinfo .name{
+  width: 100%;
+  height: 30%;
+  margin-left: 10px;
+  text-align: center;
+  background-color: gray;
+  /* line-height: normal; */
+}
+.container-profileinfo {
+  display: flex;
+  justify-content: left;
+  overflow-wrap: anywhere;
 }

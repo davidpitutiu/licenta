@@ -4,10 +4,11 @@
   session_start();
   $user_id = $_SESSION['user_id'];
   // echo $user_id;
-  $sql = "SELECT firstname FROM users where user_id = '$user_id'";
+  $sql = "SELECT firstname, lastname FROM users where user_id = '$user_id'";
   $result = mysqli_query($connect, $sql);
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
+    $lastname = $row['lastname'];
 	}
   $sql = "SELECT doctor_id FROM doctors WHERE user_id = '$user_id'";
   $doctor = mysqli_query($connect, $sql);
@@ -96,7 +97,12 @@
         </ul>
       </div>
       <div class="container-profileinfo">
-
+        <div class="pfp">
+          <img src="../photos/profilepicture_default.png" alt="unplash">
+        </div>
+        <div class="name">
+          <p style = "font-size: 20px; color: #00dc00;"><?php echo $firstname.' '.$lastname; ?></p>
+        </div>
       </div>
 </body>
 </html>
