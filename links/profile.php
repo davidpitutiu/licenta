@@ -102,7 +102,20 @@
       <div class="container-profileinfo">
         <div class="first-profile">
           <div class="pfp">
-            <img src="../photos/profilepicture_default.png" alt="unplash">
+            <?php
+              $sql = "SELECT profile_picture FROM users WHERE user_id = '$user_id'";
+              $result = mysqli_query($connect, $sql);
+              while ($row = $result->fetch_assoc()) {
+                $profile_picture = $row['profile_picture'];
+              }
+            ?>
+            <img src="<?php
+              if($profile_picture !=0)
+              {
+                echo $profile_picture;
+              }else
+              echo "../photos/profilepicture_default.png";
+            ?>" alt="unplash">
           </div>
           <div class="name">
             <span style = "font-size: 20px; color: #00dc00;"><?php echo $firstname.' '.$lastname; ?></span>

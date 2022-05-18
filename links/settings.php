@@ -24,6 +24,15 @@
     $age = $_POST['age'];
     $description = $_POST['description'];
     $specialization = $_POST['specialization'];
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "../photos/" .$filename;
+    if($filename != NULL){
+      $sql = "UPDATE users SET profile_picture = '$folder' WHERE user_id = '$user_id'";
+
+      mysqli_query($connect, $sql);
+      move_uploaded_file($tempname, $folder);
+    }
     if(!empty($_POST['doctors'])) {
       $doctors = $_POST['doctors'];
     }
@@ -144,7 +153,7 @@
     </div>
   </header>
   <div class="container">
-		<form action="" method="POST" class="settings">
+		<form action="" method="POST" class="settings" enctype="multipart/form-data">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Settings</p>
 			<div class="input-group">
 				<input type="text" placeholder="Last Name" name="lname" value="<?php echo $lname; ?>">
@@ -154,6 +163,9 @@
       </div>
 			<div class="input-group">
         <input type="tel" placeholder="Enter your phone number:" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>">
+      </div>
+      <div class="input-group">
+        <input type="file" class="custom-file-input" name="uploadfile" id="customFileInput" aria-describedby="customFileInput">
       </div>
       <!-- <div class="input-group">
 				<input type="email" placeholder="Email" name="email" value="<?php //echo $email; ?>">
@@ -207,7 +219,6 @@
               echo '<option name = "'.$name.'" value="'.$name.'">' . $name.' '. $lastname. '</option>';
             }
           }
-          echo "</>";
         }
       ?>
       <div class="input-group">

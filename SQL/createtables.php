@@ -17,6 +17,7 @@
         lastname VARCHAR(100),
         token VARCHAR(255),
         active INT( 1 ) NOT NULL DEFAULT '0',
+        profile_picture BLOB,
         ssn VARCHAR( 13 )
       )"
     );
