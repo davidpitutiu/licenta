@@ -252,14 +252,21 @@ body {
 .input-group input:valid {
   border-color: #00dc00;
 }
+.container-profileinfo .first-profile .pfp{
+  height: 150px;
+  width: 150px;
+  margin: 5px 5px 5px 5px;
+}
 .container-profileinfo .first-profile .pfp img{
-  height: 100px;
-  width: 100px;
   border-radius: 50%;
-  margin: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit:cover;
+  background-color: #e7e7e7;
+  display: block;
 }
 .container-profileinfo .first-profile .name{
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: center;

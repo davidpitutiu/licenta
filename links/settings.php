@@ -26,10 +26,10 @@
     $specialization = $_POST['specialization'];
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "../photos/" .$filename;
+    $extension = pathinfo($_FILES["uploadfile"]["name"], PATHINFO_EXTENSION);
+    $folder = "../photos/" .$user_id.'.'.$extension;
     if($filename != NULL){
       $sql = "UPDATE users SET profile_picture = '$folder' WHERE user_id = '$user_id'";
-
       mysqli_query($connect, $sql);
       move_uploaded_file($tempname, $folder);
     }
