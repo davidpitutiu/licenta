@@ -17,6 +17,25 @@
     $username = $row['lastname']. ' ';
     $username .= $row['firstname'];
   }
+  if (isset($_POST['submit'])) {
+    $dname = $_POST['dname'];
+    $ddescription = $_POST['ddescription'];
+    $sql = "SELECT patient_id FROM patients WHERE user_id = '$puser_id'";
+    $query = mysqli_query($connect, $sql);
+    while ($row = $query->fetch_assoc()) {
+			$patient_id = $row['patient_id'];
+  	}
+    $sql = "INSERT INTO diagnostics (name, description, patient_id) VALUES ('$dname', '$ddescription', '$patient_id')";
+    $query = mysqli_query($connect, $sql);
+    $sql = "SELECT diagnostic_id FROM diagnostics WHERE name = '$dname' AND description = '$ddescription' AND patient_id = '$patient_id'";
+    $query = mysqli_query($connect, $sql);
+    while ($row = $query->fetch_assoc()) {
+			$diagnostic_id = $row['diagnostic_id'];
+  	}
+    echo $diagnostic_id;
+    $dname = "";
+    $ddescription = "";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +63,36 @@
 			<div class="input-group">
 				<input type="text" placeholder="Diagnostic Description" name="ddescription" value="<?php echo $ddescription; ?>" required>
 			</div>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+        $(document).ready(function() {
+          var max_fields      = 100;
+          var wrapper         = $("#input_fields_wrap");
+          var add_button      = $("#add_field_button");
 
+          var x = 1;
+
+
+        $(add_button).click(function(e){ //on add input button click
+              e.preventDefault();
+              if(x < max_fields){ //max input box allowed
+
+              //text box increment
+                  $(wrapper).append('<div class="input-group"><input type="text" name="medication[]" style="width:50%;" placeholder="Add medication here"/><input type="number" min = "0"style="width:20%;" name="value[]" placeholder="Per day"/></div>');
+                  x++;
+          }
+          });
+        });
+      </script>
+      <div id="input_fields_wrap">
+        <button id = "add_field_button" class = "btn btn-success">Add More Fields</button>
+        <br>
+        <br>
+        <div class = "input-group">
+          <input type="text" style="width:50%;" name="medication[]" placeholder="Add medication here"/>
+          <input type="number" min ="0" style="width:20%;" name="value[]" placeholder="Per day"/>
+        </div>
+     </div>
 			<div class="input-group">
 				<button name="submit" class="btn">Submit</button>
       </div>
