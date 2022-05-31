@@ -94,7 +94,6 @@
     $createtable6 = mysqli_query($connect, "CREATE TABLE medication (
         medication_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100),
-        description LONGTEXT,
         dosage INT UNSIGNED,
         diagnostic_id INT UNSIGNED,
         FOREIGN KEY (diagnostic_id) REFERENCES diagnostics(diagnostic_id)

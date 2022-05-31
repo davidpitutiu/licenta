@@ -32,9 +32,18 @@
     while ($row = $query->fetch_assoc()) {
 			$diagnostic_id = $row['diagnostic_id'];
   	}
-    echo $diagnostic_id;
     $dname = "";
     $ddescription = "";
+    $medication = $_POST['medication'];
+    $dosage = $_POST['dosage'];
+    $medication_count = count($medication);
+    for($i = 0; $i < $medication_count; $i++){
+      $sql = "INSERT INTO medication (name, dosage, diagnostic_id) VALUES ('$medication[$i]', '$dosage[$i]', '$diagnostic_id')";
+      $query = mysqli_query($connect, $sql);
+    }
+    $diagnosis_id = "";
+    $medication = "";
+    $dosage = "";
   }
 ?>
 <!DOCTYPE html>
@@ -73,14 +82,19 @@
           var x = 1;
 
 
-        $(add_button).click(function(e){ //on add input button click
+          $(add_button).click(function(e){ //on add input button click
               e.preventDefault();
               if(x < max_fields){ //max input box allowed
 
               //text box increment
-                  $(wrapper).append('<div class="input-group"><input type="text" name="medication[]" style="width:50%;" placeholder="Add medication here"/><input type="number" min = "0"style="width:20%;" name="value[]" placeholder="Per day"/></div>');
+                  $(wrapper).append('<div class="input-group"><input type="text" name="medication[]" style="width:50%;" placeholder="Add medication here" required/><input type="number" min = "0" style="width:20%;" name="dosage[]" placeholder="Per day" required/><button href="#" id="remove_field">Remove</button></div>');
                   x++;
-          }
+              }
+          });
+          $(wrapper).on("click","#remove_field", function(e){
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
           });
         });
       </script>
@@ -90,7 +104,7 @@
         <br>
         <div class = "input-group">
           <input type="text" style="width:50%;" name="medication[]" placeholder="Add medication here"/>
-          <input type="number" min ="0" style="width:20%;" name="value[]" placeholder="Per day"/>
+          <input type="number" min ="0" style="width:20%; margin-right:60px;" name="dosage[]" placeholder="Per day"/>
         </div>
      </div>
 			<div class="input-group">
