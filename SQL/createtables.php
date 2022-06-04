@@ -30,7 +30,6 @@
     $createtable2 = mysqli_query($connect, "CREATE TABLE institutions (
         institution_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100),
-        description LONGTEXT,
         city VARCHAR(100),
         address VARCHAR(200)
       )"
@@ -44,8 +43,6 @@
     $createtable3 = mysqli_query($connect, "CREATE TABLE doctors (
         doctor_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         specialization VARCHAR(100),
-        doctor_rating INT UNSIGNED,
-        description LONGTEXT,
         phone_number VARCHAR(15),
         institution_id INT UNSIGNED,
         FOREIGN KEY (institution_id) REFERENCES institutions(institution_id),

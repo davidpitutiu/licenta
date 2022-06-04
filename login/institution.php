@@ -4,16 +4,14 @@
   session_start();
   if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $description = $_POST['description'];
     $city = $_POST['city'];
     $address = $_POST['address'];
-    $sql = "INSERT INTO institutions (name, description, city, address) values('$name', '$description', '$city', '$address')";
+    $sql = "INSERT INTO institutions (name, city, address) values('$name', '$city', '$address')";
     $result = mysqli_query($connect, $sql);
     if($result){
       echo "<script>alert('Institution added succsesfully!');</script>";
       header('Location: institution.php');
       $name = "";
-      $description = "";
       $city = "";
       $address = "";
     }
@@ -36,9 +34,6 @@
         <div class="input-group">
           <input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" required>
         </div>
-        <dizv class="input-group">
-          <input type="text" placeholder="Add a description" name="description" value="<?php echo $description; ?>" required>
-        </dizv>
         <div class="input-group">
           <input type="text" placeholder="City" name="city" value="<?php echo $city; ?>" required>
         </div>
