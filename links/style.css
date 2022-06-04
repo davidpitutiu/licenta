@@ -263,12 +263,12 @@ body {
   border-color: #00dc00;
 }
 .container-profileinfo .first-profile .pfp{
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 130px;
   margin: 5px 5px 5px 5px;
 }
 .container-profileinfo .first-profile .pfp img{
-  border-radius: 50%;
+  border-radius: 100%;
   height: 100%;
   width: 100%;
   object-fit:cover;
@@ -299,6 +299,69 @@ body {
   overflow-wrap: anywhere;
 }
 .container-profileinfo .second-profile .user-data{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  flex-direction: column;
+  overflow-y: visible;
+}
+
+.container-doctorinfo{
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  vertical-align: middle;
+  height: 500px;
+  width: 500px;
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #00dc00;
+  text-align: center;
+  overflow-y: scroll;
+}
+.container-doctorinfo .first-doctorprofile .pfp {
+  height: 100px;
+  width: 140px;
+  margin: 5px 5px 5px 5px;
+}
+
+.container-doctorinfo .first-doctorprofile .pfp img {
+  border-radius: 70%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-color: #e7e7e7;
+  display: block;
+}
+.container-doctorinfo .first-doctorprofile .name {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.container-doctorinfo .first-doctorprofile {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  overflow-wrap: anywhere;
+}
+
+.container-profileinfo .second-doctorprofile {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+
+.container-profileinfo .second-doctorprofile .user-data {
   height: 100%;
   display: flex;
   justify-content: center;

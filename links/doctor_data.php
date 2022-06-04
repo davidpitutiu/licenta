@@ -39,8 +39,8 @@
       <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
       <a class="nav-link" href="home.php" >Home</a>
     </div>
-      <div class="container-profileinfo">
-        <div class="first-profile">
+      <div class="container-doctorinfo">
+        <div class="first-doctorprofile">
           <div class="pfp">
             <?php
                   $sql = "SELECT profile_picture FROM users WHERE user_id = '$doctor_user_id'";
@@ -61,7 +61,7 @@
                 <span style = "font-size: 20px; color: #00dc00;"><?php echo $doctor_fullname; ?></span>
           </div>
         </div>
-            <div class="second-profile">
+            <div class="second-doctorprofile">
               <div class="user-data">
               <?php
               $sql = "SELECT email FROM users WHERE user_id = '$doctor_user_id'";
