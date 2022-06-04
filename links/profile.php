@@ -204,11 +204,25 @@
               $doctor_name = $row['firstname'].' ';
               $doctor_name .= $row['lastname'];
             }
+            $sql = "SELECT institution_id FROM doctors WHERE doctor_id = '$patient_doctor_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $patient_institution_id = $row['institution_id'];
+            }
+            $sql = "SELECT name, city, address FROM institutions WHERE institution_id = '$patient_institution_id'";
+            $result = mysqli_query($connect, $sql);
+            while ($row = $result->fetch_assoc()) {
+              $patient_institution_data = $row['name']. ' ';
+              $patient_institution_data .= $row['city']. ' ';
+              $patient_institution_data .= $row['address'];
+            }
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_height</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_weight</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_age</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_phone_number</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$doctor_name</p>";
+            // echo "<p style='font-size: 20px; color: #00dc00;'>$patient_institution_data</p>";
+            echo "<a href='doctor_data.php?doctor_id=".$patient_doctor_id."' style='font-size: 20px; color: #00ac00;'>$doctor_name</a>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_institution_data</p>";
           }
           ?>
           </div>

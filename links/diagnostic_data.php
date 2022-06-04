@@ -4,7 +4,7 @@
   session_start();
   $diagnostic_id = $_GET['diagnostic_id'];
   $user_id = $_SESSION['user_id'];
-    $sql = "SELECT firstname FROM users where user_id = '$user_id'";
+  $sql = "SELECT firstname FROM users where user_id = '$user_id'";
   $result = mysqli_query($connect, $sql);
   while ($row = $result->fetch_assoc()) {
 		$firstname = $row['firstname'];
