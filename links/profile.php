@@ -43,8 +43,22 @@
       }
     }
     $j=0;
-  }else{
+  }elseif(!$doctor_id){
     $doctor = 0;
+    $sql = "SELECT patient_id FROM patients WHERE user_id = $user_id";
+    $patientid_query = mysqli_query($connect, $sql);
+    while ($row = $patientid_query->fetch_assoc()) {
+      $patient_id = $row['patient_id'];
+    }
+    $sql = "SELECT name FROM diagnostics WHERE patient_id = '$patient_id'";
+    $query = mysqli_query($connect, $sql);
+    // var_dump($query->num_rows);
+    if($query->num_rows > 0) {
+      while ($row = $query -> fetch_assoc()){
+        $diagnostic_name[] = $row['name'];
+      }
+      $diagnostic_count = count($diagnostic_name);
+    }
   }
 
 ?>
@@ -79,6 +93,7 @@
             while($row = $result->fetch_assoc()){
               $institution=$row['name'];
             }
+
           }else{
             echo '<p style = "font-size: 3rem; text-align:center; color: #00dc00">Diagnostics</p>';
           }
@@ -94,6 +109,21 @@
               }
               $num = $i+1;
               echo "<li class='list-group-item'>".$num.". ".$patient_name[$i]."<a href='patient_file.php?puser_id=".$puser_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+            }
+            $num = 0;
+          ?>
+        </ul>
+        <ul class="list-group">
+          <?php
+            $num = 0;
+            for ($i = 0 ; $i<$diagnostic_count; $i++){
+              $sql = "SELECT diagnostic_id FROM diagnostics WHERE name = '$diagnostic_name[$i]'";
+              $result = mysqli_query($connect, $sql);
+              while ($row = $result->fetch_assoc()){
+                $diagnostic_id = $row['diagnostic_id'];
+              }
+              $num = $i+1;
+              echo "<li class='list-group-item'>".$num.". ".$diagnostic_name[$i]."<a href='diagnostic_data.php?diagnostic_id=".$diagnostic_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
             }
             $num = 0;
           ?>
@@ -142,14 +172,17 @@
             while ($row = $result->fetch_assoc()) {
               $doctor_institution_id = $row['institution_id'];
             }
-            $sql = "SELECT name FROM institutions WHERE institution_id = '$doctor_institution_id'";
+            $sql = "SELECT name, city, address FROM institutions WHERE institution_id = '$doctor_institution_id'";
             $result = mysqli_query($connect, $sql);
             while ($row = $result->fetch_assoc()) {
               $institution_name = $row['name'];
+              $institution_city = $row['city'];
+              $institution_address = $row['address'];
             }
             echo "<p style='font-size: 20px; color: #00dc00;'>$doc_specialization</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$doc_phone_number</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$institution_name</p>";
+            echo "<p style='font-size: 20px; color: #00dc00;'>$institution_city  $institution_address</p>";
           }else{
             $sql = "SELECT age, height, weight, phone_number, doctor_id FROM patients WHERE user_id = '$user_id'";
             $result = mysqli_query($connect, $sql);
