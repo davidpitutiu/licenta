@@ -9,7 +9,6 @@
     $sql = "INSERT INTO institutions (name, city, address) values('$name', '$city', '$address')";
     $result = mysqli_query($connect, $sql);
     if($result){
-      echo "<script>alert('Institution added succsesfully!');</script>";
       header('Location: institution.php');
       $name = "";
       $city = "";

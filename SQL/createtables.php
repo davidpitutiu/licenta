@@ -102,6 +102,20 @@
     }else{
         echo "Failed to create medication table! <br>";
     }
+    $createtable7 = mysqli_query($connect, "CREATE TABLE articles (
+        article_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        title  TEXT,
+        body LONGTEXT,
+        user_id INT UNSIGNED,
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+      )"
+    );
+    //Checks if the table has been created
+    if($createtable7){
+        echo "Articles table created succsesfully! <br>";
+    }else{
+        echo "Failed to create articles table! <br>";
+    }
   }else{
     echo "Connection Failed! <br>";
   }

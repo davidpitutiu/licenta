@@ -19,11 +19,10 @@ if (isset($_POST['submit'])) {
   if($tok == $token){
     $sql = "UPDATE users SET active = '1' WHERE email = '$email'";
     $result = mysqli_query($connect, $sql);
-    echo "<script>alert('Verification was successful!')</script>";
     $_SESSION['user_id'] = $user_id;
     header('Location: ../links/profile.php');
   }else{
-    echo "<script>alert('The code doesn't match with our database. Try again!')</script>";
+    echo "<script>alert('Woops! The code you entered is not in our database')</script>";
   }
 }
 if (isset($_POST['resend'])){

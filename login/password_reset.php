@@ -15,16 +15,12 @@
     if($tok == $token){
       if ($password == $cpassword) {
 	    	$sql = "UPDATE users SET user_password = '$password' WHERE email = '$email'";
-        echo $sql;
         $result = mysqli_query($connect, $sql);
         $password= "";
         header("Location: ../index.php");
-        echo "<script>alert('The password was changed successfuly!')</script>";
-      }else{
-        echo "<script>alert('The passwords don't match!')</script>";
       }
     }else{
-      echo "<script>alert('The code doesn't match with our database. Try again!')</script>";
+      echo "<script>alert('Woops! The code you entered is not in our database')</script>";
     }
   }
 ?>

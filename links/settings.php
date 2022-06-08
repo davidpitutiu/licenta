@@ -146,7 +146,7 @@
       <a class="nav-link" href="home.php" >Home</a>
     </div>
   </header>
-  <div class="container">
+  <div class="container" style="height: 90%; overflow-y:scroll; margin-top: 10px;">
 		<form action="" method="POST" class="settings" enctype="multipart/form-data">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Settings</p>
 			<div class="input-group">
@@ -182,10 +182,10 @@
           </div>";
         }else{
           echo "<div class='input-group'>
-				          <input type='weight' placeholder='Weight' name='weight' value='$weight'>
+				          <input type='weight' placeholder='Weight in kg' name='weight' value='$weight'>
 			          </div>
                 <div class='input-group'>
-				          <input type='height' placeholder='Height' name='height' value='$height'>
+				          <input type='height' placeholder='Height in cm' name='height' value='$height'>
 			          </div>
                 <div class='input-group'>
 				          <input type='age' placeholder='Age' name='age' value='$age'>

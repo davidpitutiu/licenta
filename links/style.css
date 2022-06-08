@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'); */
 body {
   width: 100%;
   height: 100vh;
@@ -20,12 +20,12 @@ body {
   font-size: 30px;
   text-decoration: none;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   color: rgb(8, 14, 14);
 }
 
 .navbar a:visited {
-  color: rgb(8, 14, 14);
+  color: lightgray;
   ;
 }
 
@@ -41,6 +41,111 @@ body {
   float: right;
   margin-right: 10px;
 }
+.add-button{
+  text-align: center;
+}
+.add-button a{
+  margin-top: 10px;
+}
+.articles{
+  position: fixed;
+  text-align: center;
+  top: 100px;
+  width: 80%;
+  left: 10%;
+  height: 85%;
+  border: 2px solid #e7e7e7;
+  box-shadow: 0 0 5px #00dc00;
+  border-radius: 10px;
+  background-color: white;
+  overflow-y: scroll;
+}
+.div-article{
+  position: fixed;
+  text-align: center;
+  top: 100px;
+  width: 80%;
+  left: 10%;
+  height: 85%;
+  border: 2px solid #e7e7e7;
+  box-shadow: 0 0 5px #00dc00;
+  border-radius: 10px;
+  background-color: white;
+  overflow-y: scroll;
+}
+.div-article .input-group .btn {
+  width: 30%;
+  padding: 15px 20px;
+  text-align: center;
+  border: none;
+  background: #00dc00;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  color: #FFF;
+  cursor: pointer;
+  transition: .3s;
+}
+.div-article .input-group .btn:hover {
+  transform: translateY(5px);
+  background: #00dc00;
+}
+.div-article .input-group {
+  color: #111;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.div-article .input-group input {
+  width: 70%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: transparent;
+  outline: none;
+  transition: .3s;
+}
+
+.div-article .input-group input:focus,
+.input-group input:valid {
+  border-color: #00dc00;
+}
+.div-article .input-group textarea {
+  width: 70%;
+  height: 100%;
+  border: 2px solid #e7e7e7;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+  background: transparent;
+  outline: none;
+  transition: .3s;
+}
+
+.div-article .input-group textarea:focus,
+.input-group input:valid {
+  border-color: #00dc00;
+}
+
+.show-article{
+  position: fixed;
+  text-align: center;
+  top: 100px;
+  width: 80%;
+  left: 10%;
+  height: 85%;
+  border: 2px solid #e7e7e7;
+  box-shadow: 0 0 5px #00dc00;
+  border-radius: 10px;
+  background-color: white;
+  overflow-y: scroll;
+}
+
 .container-data{
   position: fixed;
   top: 70px;
@@ -59,7 +164,7 @@ body {
   background-color: white;
   width: 30%;
   height: 50%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 /* width */
 ::-webkit-scrollbar {
@@ -296,7 +401,7 @@ body {
   height: 70%;
   display: flex;
   justify-content: center;
-  overflow-wrap: anywhere;
+  overflow-y: scroll;
 }
 .container-profileinfo .second-profile .user-data{
   height: 100%;
@@ -305,7 +410,6 @@ body {
   align-content: center;
   text-align: center;
   flex-direction: column;
-  overflow-y: visible;
 }
 
 .container-doctorinfo{

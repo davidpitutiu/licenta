@@ -123,7 +123,7 @@
                 $diagnostic_id = $row['diagnostic_id'];
               }
               $num = $i+1;
-              echo "<li class='list-group-item'>".$num.". ".$diagnostic_name[$i]."<a href='diagnostic_data.php?diagnostic_id=".$diagnostic_id."' style = ' float:right;'>  EDIT <span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></li>";
+              echo "<li class='list-group-item'>".$num.". ".$diagnostic_name[$i]."<a href='diagnostic_data.php?diagnostic_id=".$diagnostic_id."' style = ' float:right;'>  OPEN <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a></li>";
             }
             $num = 0;
           ?>
@@ -179,10 +179,10 @@
               $institution_city = $row['city'];
               $institution_address = $row['address'];
             }
-            echo "<p style='font-size: 20px; color: #00dc00;'>$doc_specialization</p>";
+            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$doc_specialization</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$doc_phone_number</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$institution_name</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$institution_city  $institution_address</p>";
+            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$institution_name</p>";
+            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$institution_city  $institution_address</p>";
           }else{
             $sql = "SELECT age, height, weight, phone_number, doctor_id FROM patients WHERE user_id = '$user_id'";
             $result = mysqli_query($connect, $sql);
@@ -221,8 +221,8 @@
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_age</p>";
             echo "<p style='font-size: 20px; color: #00dc00;'>$patient_phone_number</p>";
             // echo "<p style='font-size: 20px; color: #00dc00;'>$patient_institution_data</p>";
-            echo "<a href='doctor_data.php?doctor_id=".$patient_doctor_id."' style='font-size: 20px; color: #00ac00;'>$doctor_name</a>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_institution_data</p>";
+            echo "<a href='doctor_data.php?doctor_id=".$patient_doctor_id."' style='font-size: 20px; color: #00ac00; word-wrap: break-word;'>$doctor_name</a>";
+            echo "<p style='font-size: 20px; color: #00dc00; word-wrap: break-word;'>$patient_institution_data</p>";
           }
           ?>
           </div>
