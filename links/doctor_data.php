@@ -33,12 +33,20 @@
   <title><?php echo $doctor_fullname; ?></title>
 </head>
 <body>
-    <div class="navbar  navbar-expand-sm">
-      <a class="nav-link" href="logout.php">Log Out</a>
-      <a class="nav-link" href="settings.php">Settings</a>
-      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
-      <a class="nav-link" href="home.php" >Home</a>
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand">
+          Medical Warehouse</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="home.php">Home</a></li>
+        <li><a href="profile.php"><?php echo $firstname ?></a></li>
+        <li><a href="settings.php">Settings</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
     </div>
+  </nav>
       <div class="container-doctorinfo">
         <div class="first-doctorprofile">
           <div class="pfp">

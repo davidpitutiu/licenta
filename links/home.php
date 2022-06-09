@@ -19,7 +19,7 @@
   }else{
     $doctor = 0;
   }
-  $sql = "SELECT title, body, user_id FROM articles";
+  $sql = "SELECT title, body, user_id FROM articles ORDER BY article_id DESC";
   $query = mysqli_query($connect, $sql);
     while ($row = $query -> fetch_assoc()){
       $article_title[] = $row['title'];
@@ -39,14 +39,20 @@
   <title>Home</title>
 </head>
 <body>
-  <header>
-    <div class="navbar  navbar-expand-sm">
-      <a class="nav-link" href="logout.php">Log Out</a>
-      <a class="nav-link" href="settings.php">Settings</a>
-      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
-      <a class="nav-link" href="home.php" >Home</a>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand">
+          Medical Warehouse</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="home.php">Home</a></li>
+        <li><a href="profile.php"><?php echo $firstname ?></a></li>
+        <li><a href="settings.php">Settings</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
     </div>
-  </header>
+  </nav>
   <div class="add-button">
     <?php
       if($doctor==1){
@@ -63,7 +69,7 @@
               while ($row = $result->fetch_assoc()){
                 $article_id = $row['article_id'];
               }
-              echo "<li class='list-group-item'><a href='article_page.php?article_id=".$article_id."&article_user_id=".$article_user_id[$i]."'>".$article_title[$i]."</a></li>";
+              echo "<li class='list-group-item'><a style=' color:black; font-size:15px;' href='article_page.php?article_id=".$article_id."&article_user_id=".$article_user_id[$i]."'>".$article_title[$i]."</a></li>";
             }
           ?>
         </ul>

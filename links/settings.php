@@ -138,14 +138,20 @@
   <title>Settings</title>
 </head>
 <body>
-  <header>
-    <div class="navbar  navbar-expand-sm">
-      <a class="nav-link" href="logout.php">Log Out</a>
-      <a class="nav-link" href="settings.php">Settings</a>
-      <a class="nav-link" href="profile.php"><?php echo $firstname ?></a>
-      <a class="nav-link" href="home.php" >Home</a>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand">
+          Medical Warehouse</p>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="home.php">Home</a></li>
+        <li><a href="profile.php"><?php echo $firstname ?></a></li>
+        <li><a href="settings.php">Settings</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+      </ul>
     </div>
-  </header>
+  </nav>
   <div class="container" style="height: 90%; overflow-y:scroll; margin-top: 10px;">
 		<form action="" method="POST" class="settings" enctype="multipart/form-data">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Settings</p>

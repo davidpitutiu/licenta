@@ -11,38 +11,23 @@ body {
   background-size: cover;
   margin-top: 0;
 }
-.navbar {
-  background-color: rgb(58, 58, 58);
-  width: 100%;
-  height: 30px;
-  align-items: right;
-  margin-bottom: 0;
-}
 
-.navbar a:link {
+.navbar li a:link {
   font-size: 30px;
-  text-decoration: none;
   height: 100%;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-  color: rgb(8, 14, 14);
 }
-
-.navbar a:visited {
-  color: lightgray;
-  ;
+.navbar p{
+  font-size: 30px;
 }
-
-.navbar a:active {
+.navbar li a:link {
   color: #00dc00;
 }
-
-.navbar a:hover {
+.navbar li a:visited {
   color: #00dc00;
 }
-
-.navbar a {
-  float: right;
-  margin-right: 10px;
+.navbar li a:active {
+  color: #00dc00;
 }
 
 .add-button{
@@ -53,7 +38,6 @@ body {
 }
 .articles{
   position: fixed;
-  text-align: center;
   top: 100px;
   width: 80%;
   left: 10%;
@@ -410,6 +394,7 @@ body {
   display: flex;
   overflow: scroll;
   white-space: nowrap;
+  margin: 10px;
 }
 .container-profileinfo .second-profile .user-data{
   height: 100%;
