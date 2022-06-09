@@ -69,7 +69,7 @@
                 while ($row = $result->fetch_assoc()) {
                   $email = $row['email'];
                 }
-                echo "<p style='font-size: 20px; color: #00dc00;'>$email</p>";
+                echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Email:</p><p style='margin:7px;'>$email</p></div>";
                 $sql = "SELECT specialization, phone_number FROM doctors WHERE user_id = '$doctor_user_id'";
                 $result = mysqli_query($connect, $sql);
                 while ($row = $result->fetch_assoc()) {
@@ -88,12 +88,13 @@
                   $institution_city = $row['city'];
                   $institution_address = $row['address'];
                 }
-                echo "<p style='font-size: 20px; color: #00dc00;'>$doc_specialization</p>";
-                echo "<p style='font-size: 20px; color: #00dc00;'>$doc_phone_number</p>";
-                echo "<p style='font-size: 20px; color: #00dc00;'>$institution_name</p>";
-                echo "<p style='font-size: 20px; color: #00dc00;'>$institution_city  $institution_address</p>";
+                   echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Specialization:</p> <p style='margin:7px;'>$doc_specialization</p></div>";
+                   echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Phone number:</p> <p style='margin:7px;'> $doc_phone_number</p></div>";
+                   echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Work place:</p> <p style='margin:7px;'> $institution_name</p></div>";
+                   echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Work address:</b> <p style='margin:7px;'> $institution_city  $institution_address</p></div>";
               ?>
             </div>
           </div>
 </body>
 </html>
+

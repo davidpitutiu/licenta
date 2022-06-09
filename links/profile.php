@@ -159,7 +159,7 @@
             while ($row = $result->fetch_assoc()) {
               $email = $row['email'];
             }
-            echo "<p style='font-size: 20px; color: #00dc00;'>$email</p>";
+            echo "<div style='display: flex; margin-top: 25px;'><p style='font-size: 20px; color: #00dc00;'>Email:</p><p style='margin:7px;'>$email</p></div>";
           if($doctor == 1) {
             $sql = "SELECT specialization, phone_number FROM doctors WHERE user_id = '$user_id'";
             $result = mysqli_query($connect, $sql);
@@ -179,10 +179,10 @@
               $institution_city = $row['city'];
               $institution_address = $row['address'];
             }
-            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$doc_specialization</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$doc_phone_number</p>";
-            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$institution_name</p>";
-            echo "<p style='font-size: 20px; color: #00dc00; text-overflow: ellipsis;'>$institution_city  $institution_address</p>";
+            echo "<div style='display: flex; word-break: break-all;'><p style='font-size: 20px; color: #00dc00;'>Specialization:</p> <p style='margin:7px;'>$doc_specialization</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Phone number:</p> <p style='margin:7px;'> $doc_phone_number</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Work place:</p> <p style='margin:7px;'> $institution_name</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Work address:</b> <p style='margin:7px;'> $institution_city  $institution_address</p></div>";
           }else{
             $sql = "SELECT age, height, weight, phone_number, doctor_id FROM patients WHERE user_id = '$user_id'";
             $result = mysqli_query($connect, $sql);
@@ -216,13 +216,12 @@
               $patient_institution_data .= $row['city']. ' ';
               $patient_institution_data .= $row['address'];
             }
-            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_height</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_weight</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_age</p>";
-            echo "<p style='font-size: 20px; color: #00dc00;'>$patient_phone_number</p>";
-            // echo "<p style='font-size: 20px; color: #00dc00;'>$patient_institution_data</p>";
-            echo "<a href='doctor_data.php?doctor_id=".$patient_doctor_id."' style='font-size: 20px; color: #00ac00; word-wrap: break-word;'>$doctor_name</a>";
-            echo "<p style='font-size: 20px; color: #00dc00; word-wrap: break-word;'>$patient_institution_data</p>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Height:</p> <p style='margin:7px;'>$patient_height</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Weight:</p> <p style='margin:7px;'>$patient_weight</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Age:</p> <p style='margin:7px;'>$patient_age</p></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Phone number:</p> <p style='margin:7px;'>$patient_phone_number</p></div>";
+            echo "<div style='display: flex; '><p style='font-size: 20px; color: #00dc00;'>Doctor:</p><a href='doctor_data.php?doctor_id=".$patient_doctor_id."' style='margin:7px; text-decoration:underline; color: black;'>$doctor_name</a></div>";
+            echo "<div style='display: flex;'><p style='font-size: 20px; color: #00dc00;'>Institution adress:</p> <p style='margin:7px;'>$patient_institution_data</p></div>";
           }
           ?>
           </div>
