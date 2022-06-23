@@ -33,8 +33,8 @@ body {
 .add-button{
   text-align: center;
 }
-.add-button a{
-  margin-top: 10px;
+.add-button {
+  margin-top: -20px;
 }
 .articles{
   position: fixed;
