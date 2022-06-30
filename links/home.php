@@ -21,12 +21,15 @@
   }
   $sql = "SELECT title, body, user_id FROM articles ORDER BY article_id DESC";
   $query = mysqli_query($connect, $sql);
+  if($query->num_rows > 0) {
     while ($row = $query -> fetch_assoc()){
       $article_title[] = $row['title'];
       $article_body[] = $row['body'];
       $article_user_id[]=$row['user_id'];
     }
     $article_count = count($article_title);
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

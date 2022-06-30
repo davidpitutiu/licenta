@@ -55,7 +55,7 @@
     <p style = "font-size: 3rem; text-align:center; color: #00dc00; margin-top: 10px; word-wrap: break-word;"><?php echo $article_title ?></p>
     <p style = "font-size: 2rem; text-align:right; color: #00dc00; margin-top: 10px; word-wrap: break-word;"><?php echo $poster_name ?></p>
     <br>
-    <p style = "margin:10px;"><?php echo $article_body; ?></p>
+    <p style = "margin:10px; text-align:left;"><?php echo $article_body; ?></p>
   </div>
 </body>
 </html>
